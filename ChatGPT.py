@@ -15,4 +15,3 @@ while True:
     print(f"ChatGPT: {reply}")
     messages.append({"role": "assistant", "content": reply})
 
-#Hello ChatGPT
