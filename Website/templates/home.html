@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} 
+    {% block content%}
+        <div>
+            <img class="home-background" src="{{url_for("static",filename="university_background.jpg")}}">
+            <div class="home-wrapper"></div>
+            <img class="uni-student" src="{{url_for("static",filename="university_student.jpg")}}">
+            <h1 class="title">WRITTEN BY DEVELOPERS</br>FOR DEVELOPERS</h1>
+            <div class="home-info"}>
+                <h3>
+                  COLLABORATE</br>
+                  CODE </br>
+                  COMPILE 
+                </h3>
+                
+              </div>
+        </div>
+
+    {% endblock %}

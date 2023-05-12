@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
+  %}
+
+  <div class="login-main">
+    <form class="login-form" method="POST">
+      <h1 align="center">LOG IN</h1>
+      
+        <input
+          type="email"
+          class="login-form-input"
+          id="email"
+          name="email"
+          placeholder="email"
+        />
+        <input
+          type="password"
+          class="login-form-input"
+          id="password"
+          name="password"
+          placeholder="password"
+        />
+      <button type="submit" class="login-btn">LOGIN</button>
+    </form>
+  </div>
+
+  <style>
+    body {
+    background-image: url("static/university_background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    }
+
+  </style>
+  {% endblock %}
+  

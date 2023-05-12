@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+    content %}
+    <div class="signup-main">
+      <form class="signup-form" method="POST">
+        <h1 align="center">SIGN UP</h1>
+        <input
+          type="email"
+          class="signup-form-control"
+          id="email"
+          name="email"
+          placeholder="enter email"
+          />
+        <input
+          type="text"
+          class="signup-form-control"
+          id="firstName"
+          name="firstName"
+          placeholder="enter first name"
+        />
+        <input
+          type="password"
+          class="signup-form-control"
+          id="password1"
+          name="password1"
+          placeholder="enter password"
+        />
+        <input
+          type="password"
+          class="signup-form-control"
+          id="password2"
+          name="password2"
+          placeholder="confirm password"
+        />
+        <button type="submit" class="signup-btn">Create Account</button>
+      </form>
+    </div>
+    
+    <style>
+      body {
+        background-image: url("static/university_background.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: cover;
+        color:white
+      }
+      </style>
+    {% endblock %}
