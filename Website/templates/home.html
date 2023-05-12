@@ -1,18 +1,52 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} 
     {% block content%}
+    
+      <body>
         <div>
             <img class="home-background" src="{{url_for("static",filename="university_background.jpg")}}">
-            <div class="home-wrapper"></div>
-            <img class="uni-student" src="{{url_for("static",filename="university_student.jpg")}}">
-            <h1 class="title">WRITTEN BY DEVELOPERS</br>FOR DEVELOPERS</h1>
-            <div class="home-info"}>
+            <div class="right-div">
+              <img class="homepage-slides" src="{{url_for("static",filename="pic1.jpg")}}">
+              <img class="homepage-slides" src="{{url_for("static",filename="pic2.jpg")}}" >
+              
+            </div>
+           
+            <h1 class="title1">INTRODUCING SEEK. 
+              <span class="input-cursor"></span> 
+            </h1>
+
+            <h2 class="title2">
+            </br></br></br>WRITTEN BY DEVELOPERS</br></br>FOR DEVELOPERS
+            </h2>
+            
+            <div class="home-info">
                 <h3>
-                  COLLABORATE</br>
-                  CODE </br>
-                  COMPILE 
+                  COLLABORATE. CODE. COMPILE. 
                 </h3>
                 
               </div>
         </div>
+       
+          <footer class="footer-part">&copy; 2023 Seek. All rights reserved</footer>
+        
+      </body>
+
+        
+
+        <script>
+          var myIndex = 0;
+          carousel();
+          
+          function carousel() {
+            var i;
+            var x = document.getElementsByClassName("homepage-slides");
+            for (i = 0; i < x.length; i++) {
+              x[i].style.display = "none";  
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}    
+            x[myIndex-1].style.display = "block";  
+            setTimeout(carousel, 5000); // Change image every 5 seconds
+          }
+        </script>
 
     {% endblock %}

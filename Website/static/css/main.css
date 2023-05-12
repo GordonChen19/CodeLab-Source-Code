@@ -257,14 +257,14 @@
     z-index: -1;
 }
 
-.uni-student{
+.homepage-slides{
     height: 55vh;
     position: absolute;
     top: 30%;
     left: 50%;
 }
 
-.title{
+.title1{
     color:#f1f1f2;
     position: absolute;
     top: 30%;
@@ -273,15 +273,25 @@
     font-weight: 200;
 }
 
+.title2{
+    color:#f1f1f2;
+    position: absolute;
+    top: 32%;
+    left: 5%;
+    font-size: 20px;
+    font-weight: 200;
+}
 .home-info{
     left: 5%;
     position: absolute;
     bottom: 16%;
+    top:70%;
+    font-size:25px;
     line-height: 1.6;
 }
 
 .home-info h3 {
-    font-size: 25px;
+    font-size: 32px;
     font-weight: 600;
     color: #237194;
 }
@@ -294,5 +304,29 @@
     line-height: 0.7;
 }
 
+.input-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 40px;
+    background-color:#f7e5d2;
+}
+@keyframes blink {
+    0% {opacity: 1;}
+    40% {opacity: 1;}
+    60% {opacity: 0;}
+    100% {opacity: 0;}
+}
+.input-cursor { 
+    animation: blink .6s linear infinite alternate;
+}
 
-
+.footer-part{
+    text-align: center;
+    background-color: #0C343D;
+    width:100%;
+    color:#f7e5d2;
+    padding-top:20px;
+    height: 2.5rem;         
+    bottom:0;  
+    position:absolute;
+}
