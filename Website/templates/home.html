@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} 
     {% block content%}
-    
+    <script src="static/js/home.js"></script>
       <body>
         <div>
             <img class="home-background" src="{{url_for("static",filename="university_background.jpg")}}">
@@ -10,14 +10,20 @@
               
             </div>
            
-            <h1 class="title1">INTRODUCING SEEK. 
+            <!-- <h1 class="title1">INTRODUCING SEEK. 
               <span class="input-cursor"></span> 
+            </h1> -->
+
+            <h1>
+              <a href="" class="typewrite" data-period="2000" data-type='[ "INTRODUCING SEEK" , "WRITTEN BY DEVELOPERS", "FOR DEVELOPERS" ]'>
+                <span class="input-cursor"></span>
+              </a>
             </h1>
 
-            <h2 class="title2">
+            <!-- <h2 class="title2">
             </br></br></br>WRITTEN BY DEVELOPERS</br></br>FOR DEVELOPERS
             </h2>
-            
+             -->
             <div class="home-info">
                 <h3>
                   COLLABORATE. CODE. COMPILE. 
