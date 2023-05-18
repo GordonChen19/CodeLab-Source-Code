@@ -14,9 +14,9 @@ def load_config(room_id):
     return deserialized_code
 
 def save_config(room_id,code):
-    serialized_code=Room.query.filter_by(id=room_id).first().data
+    room=Room.query.filter_by(id=room_id).first()
     formatted_code=black.format_str(code,mode=black.FileMode())
-    serialized_code= pickle.dumps(formatted_code)
+    room.data=pickle.dumps(formatted_code)
     db.session.commit()
 
 
