@@ -45,10 +45,11 @@ def view_session(room_id):
         return "ROOM DOES NOT EXIST"
     return render_template('code_editor.html')
 
-@views.route("/Lab",methods=['GET','POST'])
+@views.route("/projects",methods=['GET','POST'])
 @login_required
 def view_invitations():
     if request.method=='POST':
+        links=InvitedUser.query.filter_by(email=current_user.email).all()
         room_id=request.form.get('room_id')
         return redirect(url_for('views.view_session',room_id=room_id))
-    return render_template('lab.html')
+    return render_template('projects.html',links=links)

@@ -15,10 +15,23 @@ class ActiveUsers:
     active_users_by_sid={}
     active_sids_by_room = {}
     active_sids = set()
-    pending_sids = set()
+
     @staticmethod
     def get_by_sid(sid):
         return ActiveUsers.active_users_by_sid[sid]
+
+    @staticmethod 
+    def get_by_room(room_id):
+        return ActiveUsers.active_users_by_room.setdefault(room_id,[])
+    
+    @staticmethod
+    def remove_user(sid):
+        def remove_user_from_room(room_id):
+    
+    
+    
+    
+    
 
 
     @staticmethod
@@ -27,9 +40,7 @@ class ActiveUsers:
     @staticmethod
     def user_connected():
         ActiveUsers.pending_sids.add(request.sid)
-    @staticmethod
-    def get_room_users(room_name):
-        return ActiveUsers.active_users_by_room.setdefault(room_name,[])
+   
 
     @staticmethod
     def remove_user(sid):
