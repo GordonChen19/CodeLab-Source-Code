@@ -10,8 +10,6 @@ class User(db.Model,UserMixin):
     first_name=db.Column(db.String(150))
     
     sid = db.Column(db.String(80), unique=True, nullable=True,default=None)
-    is_admin = db.Column(db.Boolean, default=False)
-    is_active = db.Column(db.Boolean, default=True)
     
     
 class Room(db.Model):
@@ -21,9 +19,10 @@ class Room(db.Model):
     room_language = db.Column(db.String(120), nullable=False, default="python")
     data=db.Column(db.LargeBinary)
     sid = db.Column(db.String(120),nullable=True,default=None)
+    owner_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
     
-    def room_members(self):
-        return [self.owner,] + [User.query.filter_by(email=i.email_address).first() for i in self.invited_users]
+    # def room_members(self):
+    #     return [self.owner,] + [User.query.filter_by(email=i.email_address).first() for i in self.invited_users]
 
 class InvitedUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)

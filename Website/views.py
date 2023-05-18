@@ -45,11 +45,17 @@ def home():
 #         return "ROOM DOES NOT EXIST"
 #     return render_template('code_editor.html')
 
-# @views.route("/projects",methods=['GET','POST'])
-# @login_required
-# def view_invitations():
-#     if request.method=='POST':
-#         links=InvitedUser.query.filter_by(email=current_user.email).all()
-#         room_id=request.form.get('room_id')
-#         return redirect(url_for('views.view_session',room_id=room_id))
-#     return render_template('projects.html',links=links)
+@views.route("/projects",methods=['GET','POST'])
+@login_required
+def view_invitations():
+    if request.method=='POST':
+        links=InvitedUser.query.filter_by(email=current_user.email).all()
+        room_id=request.form.get('room_id')
+        return redirect(url_for('views.view_session',room_id=room_id))
+    invited_rooms=InvitedUser.query.filter_by(email=current_user.email).all()
+    rooms_dict={}
+    for rooms in invited_rooms:
+        owner=User.query.filter_by(id=rooms.owner_id).first()
+        rooms_dict[rooms.room_name]=[rooms.room_language,owner.first_name]
+    #Project name #Room Langugae #Owner
+    return render_template('projects.html',user=current_user,rooms_dict=rooms_dict)

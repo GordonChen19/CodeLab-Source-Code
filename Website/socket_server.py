@@ -62,11 +62,9 @@ def on_disconnect():
 @socketio.on('join')
 def on_join(data):
     log.info("JOIN:%s - %s"%(data,request.sid))
-    try:
-        user = User.query.filter_by(id=current_user.id)
-    except:
-        user = None
-
+    
+    user = User.query.filter_by(id=current_user.id)
+    
     username = data['username']
     room_id = data['room']
     join_room(room_id)
