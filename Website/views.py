@@ -4,7 +4,6 @@ from .models import *
 import json
 import sqlite3 as sql
 
-import subprocess
 
 conn=sql.connect('database.db')
 c=conn.cursor()
@@ -15,13 +14,41 @@ views=Blueprint('views',__name__)
 def home():
     return render_template("home.html",user=current_user)
 
-@views.route('/all_projects', methods=['GET', 'POST'])
-def project():
-    code = request.form.get('code')
-    if code:
-        result = subprocess.run(code, stdout=subprocess.PIPE, shell=True)
-        output = result.stdout.decode('utf-8')
-        print(output)
-    else:
-        output = ''
-    return render_template("ide.html", user=current_user)
+@views.route('/create_room',methods=['GET','POST'])
+@login_required
+def create_room():
+    if request.method=='POST':
+        room_name=request.form.get('room_name')
+        room_language=request.form.get('room_language')
+        new_room=Room(room_name=room_name,room_language=room_language)
+        db.session.add(new_room)
+        db.session.commit()
+        return redirect(url_for('views.view_session',room_id=new_room.id))
+    return render_template('create_session.html')
+
+@views.route('/invite_user',method=['GET','POST'])
+@login_required
+def invite_user(room_id):
+    if request.method=='POST':
+        email=request.form.get('email')
+        user=User.query.filter_by(email=email).first()
+        newInvite=InvitedUser(email=email,room_id=room_id)
+        db.session.add(newInvite)
+        db.session.commit()
+    
+        
+@views.route("/session/<room_id>")
+@login_required
+def view_session(room_id):
+    room=Room.query.filter_by(id=room_id).first()
+    if not room:
+        return "ROOM DOES NOT EXIST"
+    return render_template('code_editor.html')
+
+@views.route("/Lab",methods=['GET','POST'])
+@login_required
+def view_invitations():
+    if request.method=='POST':
+        room_id=request.form.get('room_id')
+        return redirect(url_for('views.view_session',room_id=room_id))
+    return render_template('lab.html')

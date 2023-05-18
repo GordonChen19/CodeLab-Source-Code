@@ -30,6 +30,8 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
+        if not id.isdigit():
+            return None
         return User.query.get(int(id))
 
     return app

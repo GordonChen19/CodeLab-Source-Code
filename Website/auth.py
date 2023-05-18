@@ -3,7 +3,6 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from .models import User
 from . import db 
 from flask_login import login_user,login_required,logout_user,current_user
-import pandas as pd
 
 auth=Blueprint('auth',__name__)
 
@@ -39,12 +38,16 @@ def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
+        username = request.form.get('username')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
-        user = User.query.filter_by(email=email).first()
-        if user:
+        userByEmail = User.query.filter_by(email=email).first()
+        userByUsername = User.query.filter_by(username=username).first()
+        if userByEmail:
             flash('Email already exists.', category='error')
+        elif userByUsername:
+            flash('username already exists.', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
         elif len(first_name) < 2:
@@ -54,8 +57,9 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(
-                password1, method='sha256'))
+            new_user = User(email=email, first_name=first_name, 
+                            username=username,
+                            password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
