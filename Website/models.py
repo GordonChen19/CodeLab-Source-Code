@@ -2,8 +2,6 @@ from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
-
-    
 class User(db.Model,UserMixin):
     id=db.Column(db.Integer,primary_key=True)
     username=db.Column(db.String(150),unique=True)
@@ -13,7 +11,6 @@ class User(db.Model,UserMixin):
     
     sid = db.Column(db.String(80), unique=True, nullable=True,default=None)
     is_admin = db.Column(db.Boolean, default=False)
-    is_AFK = db.Column(db.Boolean, default=False)
     is_active = db.Column(db.Boolean, default=True)
     
     

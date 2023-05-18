@@ -8,7 +8,6 @@ import black
 import sys
 
 def load_config(room_id):
-    
     serialized_code=Room.query.filter_by(id=room_id).first().data
     deserialized_code=pickle.loads(serialized_code)
     return deserialized_code
