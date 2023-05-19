@@ -8,8 +8,8 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger('codelab-socketio')
 
-def emit2(event,*args,**kwargs):
-    emit(event,*args,**kwargs)
+# def emit2(event,*args,**kwargs):
+#     emit(event,*args,**kwargs)
 class ActiveUsers:
     active_users_by_room={} 
     active_sids = set()
@@ -75,7 +75,7 @@ def on_join(data):
 
 @socketio.on('run')
 def on_run(data):
-    emit2('user_run', {'username': data['username']}, room=data['room'])
+    emit('user_run', {'username': data['username']}, room=data['room'])
 
 @socketio.on('speak')
 def on_speech(data):

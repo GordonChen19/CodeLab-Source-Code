@@ -14,7 +14,6 @@ class User(db.Model,UserMixin):
     
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    invite_code = db.Column(db.String(120))
     room_name = db.Column(db.String(120), unique=True, nullable=False)
     room_language = db.Column(db.String(120), nullable=False, default="python")
     data=db.Column(db.LargeBinary)

@@ -48,14 +48,17 @@ def home():
 @views.route("/projects",methods=['GET','POST'])
 @login_required
 def view_invitations():
-    if request.method=='POST':
-        links=InvitedUser.query.filter_by(email=current_user.email).all()
-        room_id=request.form.get('room_id')
-        return redirect(url_for('views.view_session',room_id=room_id))
+    if request.method=='POST': #newroom
+        room_name=request.form.get('room_name')
+        new_room=Room(room_name=room_name,owner_id=current_user.id)
+        db.session.add(new_room)
+        db.session.commit() 
+    
     invited_rooms=InvitedUser.query.filter_by(email=current_user.email).all()
     rooms_dict={}
     for rooms in invited_rooms:
         owner=User.query.filter_by(id=rooms.owner_id).first()
         rooms_dict[rooms.room_name]=[rooms.room_language,owner.first_name]
     #Project name #Room Langugae #Owner
-    return render_template('projects.html',user=current_user,rooms_dict=rooms_dict)
+    return render_template('projects.html',user=current_user,rooms_dict=rooms_dict) 
+
