@@ -14,29 +14,37 @@
     <div class="allcourses-wrapper">
       <div class="allCourses-wrapper">
       
-      
-        <a href=""><button type="button" class="btn btn-info">Create New File</button></a>
-        
+
+        <form method="POST">
+          <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="room_name"
+            name="room_name"
+            placeholder="Room Name"
+          />
+        </div>
+          <button type="submit" class="btn btn-primary">Create New File</button>
+        </form>
+
+
 
 
         <div class="container text-center">
           <div class="row">
+
+
+            {% for created_rooms in created_rooms %}
             <div class="col">
-                <a href="/ide" target="_blank">
+                <a href="/session/{{created_rooms.id}}" target="_blank">
                  <img id="img1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png" />
-                 <p>Project</p>
+                 {{created_rooms.room_name}}
                 </a>
             </div>
-            <div class="col">
-              <a href="/ide" target="_blank">
-                <img id="img1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png" />
-                <p>Project</p>
-            </div>
-            <div class="col">
-              <a href="/ide" target="_blank">
-                <img id="img1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png" />
-                <p>Project</p>
-            </div>
+            {% endfor %}
+
+
           </div>
         </div>
 
