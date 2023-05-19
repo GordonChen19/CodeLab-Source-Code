@@ -1,0 +1,13 @@
+#img1 {
+    width:30px;
+    height:30px;
+}
+
+.col{
+    display:inline-block;
+    width:60px;
+    height:60px;
+    background-color:#ccc;
+    border:1px solid #ff0000;
+}
+
