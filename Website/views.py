@@ -57,16 +57,24 @@ def view_invitations():
     rooms_dict={}
 
     created_rooms=Room.query.filter_by(owner_id=current_user.id).all()
-    print(created_rooms)
-    
+    owner=User.query.filter_by(id=current_user.id).first()
 
     for rooms in invited_rooms:
         owner=User.query.filter_by(id=rooms.owner_id).first()
         rooms_dict[rooms.room_name]=[rooms.room_language,owner.first_name]
     #Project name #Room Langugae #Owner
-    return render_template('projects.html',user=current_user,rooms_dict=rooms_dict,created_rooms=created_rooms) 
+    return render_template('projects.html',user=current_user,rooms_dict=rooms_dict,created_rooms=created_rooms,owner=owner) 
 
-
+@views.route('/projects', methods=['DELETE'])
+def deleteRoom():
+    room = json.loads(request.data)
+    room_id = room['room_id']
+    room = room.query.get(room_id)
+    if vehicle:
+        if room.id == current_user.id:
+            db.session.delete(room)
+            db.session.commit()
+    return jsonify({})
 
 
 '''

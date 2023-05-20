@@ -9,8 +9,10 @@ search %}
 <link rel="stylesheet" href="static/css/projects.css" />
 
 <body>
+
   <div class="allcourses-wrapper">
     <div class="allCourses-wrapper">
+      <h2>New Project</h2><br>
       <form method="POST">
         <div class="mb-3">
           <input
@@ -29,6 +31,8 @@ search %}
           </select>
         <button type="submit" class="btn btn-primary">Create New File</button>
       </form>
+<br><br>
+<h2>Exisitng Projects</h2><br>
 
       <!-- edit -->
       <!-- <div class="container text-center">
@@ -51,7 +55,8 @@ search %}
         <tr>
           <th>Room ID</th>
           <th>Room Language</th>
-          <th>Owner</th>
+          <th>Owner ID</th>
+          <th>Owner Name</th>
           <th>Delete?</th>
         </tr>
         {% for created_rooms in created_rooms %}
@@ -67,6 +72,7 @@ search %}
           </td>
           <td>{{created_rooms.room_language}}</td>
           <td>{{created_rooms.owner_id}}</td>
+          <td>{{owner.username}}</td>
           <td>
             <button
               type="button"
