@@ -44,11 +44,12 @@ def home():
 def view_invitations():
     if request.method=='POST': #newroom
         room_name=request.form.get('room_name')
+        room_language=request.form.get('room_language')
         RoomByName = Room.query.filter_by(room_name=room_name).first()
         if RoomByName:
             flash('Room Name already exists.', category='error')
         else:
-            new_room=Room(room_name=room_name,owner_id=current_user.id)
+            new_room=Room(room_name=room_name,owner_id=current_user.id,room_language=room_language)
             db.session.add(new_room)
             db.session.commit() 
     
