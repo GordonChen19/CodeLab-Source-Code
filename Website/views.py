@@ -103,76 +103,76 @@ if __name__ == "__main__":
 default_rows = "15"
 default_cols = "60"
 
-@views.route("/session/<room_id>/python",methods=['POST','GET'])
-@login_required
-def enter_room(room_id): 
-    if(request.method=='POST'):
-        code = request.form['code']
-        run = runcode.RunPyCode(code)
-        rescompil, resrun = run.run_py_code()
-        if not resrun:
-            resrun = 'No result!'
-    else:
-        code = default_python_code
-        resrun = 'No result!'
-        rescompil = 'No Compilation for Python'
+# @views.route("/session/<room_id>/python",methods=['POST','GET'])
+# @login_required
+# def enter_room(room_id): 
+#     if(request.method=='POST'):
+#         code = request.form['code']
+#         run = runcode.RunPyCode(code)
+#         rescompil, resrun = run.run_py_code()
+#         if not resrun:
+#             resrun = 'No result!'
+#     else:
+#         code = default_python_code
+#         resrun = 'No result!'
+#         rescompil = 'No Compilation for Python'
         
-    return render_template('code_editor.html',
-                           user=current_user,
-                           code=code,
-                           target="runpy",
-                           resrun=resrun,
-                           rescomp=rescompil,
-                           rows=default_rows,
-                           cols=default_cols,
-                           room_id=room_id)
+#     return render_template('code_editor.html',
+#                            user=current_user,
+#                            code=code,
+#                            target="runpy",
+#                            resrun=resrun,
+#                            rescomp=rescompil,
+#                            rows=default_rows,
+#                            cols=default_cols,
+#                            room_id=room_id)
 
-@views.route("/session/<room_id>/C",methods=['POST','GET'])
-@login_required
-def enter_room(room_id): 
-    if(request.method=='POST'):
-        code = request.form['code']
-        run = runcode.RunCCode(code)
-        rescompil, resrun = run.run_c_code()
-        if not resrun:
-            resrun = 'No result!'
-    else:
-        code = default_c_code
-        resrun = 'No result!'
-        rescompil = ''
+# @views.route("/session/<room_id>/C",methods=['POST','GET'])
+# @login_required
+# def enter_room(room_id): 
+#     if(request.method=='POST'):
+#         code = request.form['code']
+#         run = runcode.RunCCode(code)
+#         rescompil, resrun = run.run_c_code()
+#         if not resrun:
+#             resrun = 'No result!'
+#     else:
+#         code = default_c_code
+#         resrun = 'No result!'
+#         rescompil = ''
         
-    return render_template('code_editor.html',
-                           user=current_user,
-                           code=code,
-                           target="runc",
-                           resrun=resrun,
-                           rescomp=rescompil,
-                           rows=default_rows,
-                           cols=default_cols,
-                           room_id=room_id)
+#     return render_template('code_editor.html',
+#                            user=current_user,
+#                            code=code,
+#                            target="runc",
+#                            resrun=resrun,
+#                            rescomp=rescompil,
+#                            rows=default_rows,
+#                            cols=default_cols,
+#                            room_id=room_id)
 
-@views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
-@login_required
-def enter_room(room_id): 
-    if(request.method=='POST'):
-        code = request.form['code']
-        run = runcode.RunCppCode(code)
-        rescompil, resrun = run.run_cpp_code()
-        if not resrun:
-            resrun = 'No result!'
-    else:
-        code = default_cpp_code
-        resrun = 'No result!'
-        rescompil = ''
+# @views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
+# @login_required
+# def enter_room(room_id): 
+#     if(request.method=='POST'):
+#         code = request.form['code']
+#         run = runcode.RunCppCode(code)
+#         rescompil, resrun = run.run_cpp_code()
+#         if not resrun:
+#             resrun = 'No result!'
+#     else:
+#         code = default_cpp_code
+#         resrun = 'No result!'
+#         rescompil = ''
         
-    return render_template('code_editor.html',
-                           user=current_user,
-                           code=code,
-                           target="runcpp",
-                           resrun=resrun,
-                           rescomp=rescompil,
-                           rows=default_rows,
-                           cols=default_cols,
-                           room_id=room_id
-                           )
+#     return render_template('code_editor.html',
+#                            user=current_user,
+#                            code=code,
+#                            target="runcpp",
+#                            resrun=resrun,
+#                            rescomp=rescompil,
+#                            rows=default_rows,
+#                            cols=default_cols,
+#                            room_id=room_id
+#                            )
                     

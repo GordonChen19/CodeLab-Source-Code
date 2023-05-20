@@ -1,22 +1,18 @@
-{% extends "base.html" %} {% block title %}PROJECTS{% endblock %} 
-
-{% block search %}
-<h3 style="text-align: center; margin-top: 50px; color: #daac62;font-size: 32px;">PROJECTS</h3>
-{% endblock %}
-
-
-
-{% block content %}
-<link rel="stylesheet" href="static/css/projects.css">
+{% extends "base.html" %} {% block title %}PROJECTS{% endblock %} {% block
+search %}
+<h3
+  style="text-align: center; margin-top: 50px; color: #daac62; font-size: 32px"
+>
+  PROJECTS
+</h3>
+{% endblock %} {% block content %}
+<link rel="stylesheet" href="static/css/projects.css" />
 
 <body>
-
-    <div class="allcourses-wrapper">
-      <div class="allCourses-wrapper">
-      
-
-        <form method="POST">
-          <div class="mb-3">
+  <div class="allcourses-wrapper">
+    <div class="allCourses-wrapper">
+      <form method="POST">
+        <div class="mb-3">
           <input
             type="text"
             class="form-control"
@@ -25,42 +21,69 @@
             placeholder="Room Name"
           />
         </div>
-          <button type="submit" class="btn btn-primary">Create New File</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Create New File</button>
+      </form>
 
-
-
-
-        <div class="container text-center">
-          <div class="row">
-
-
-            {% for created_rooms in created_rooms %}
-            <div class="col">
-                <a href="/session/{{created_rooms.id}}" target="_blank">
-                 <img id="img1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png" />
-                 {{created_rooms.room_name}}
-                </a>
-            </div>
-            {% endfor %}
-
-
+      <!-- edit -->
+      <!-- <div class="container text-center">
+        <div class="row">
+          {% for created_rooms in created_rooms %}
+          <div class="col">
+            <a href="/session/{{created_rooms.id}}" target="_blank">
+              <img
+                id="img1"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png"
+              />
+              {{created_rooms.room_name}}
+            </a>
           </div>
+          {% endfor %}
         </div>
+      </div> -->
 
-
-      </div>  
+      <table class="table table-striped-columns">
+        <tr>
+          <th>Room ID</th>
+          <th>Room Language</th>
+          <th>Owner</th>
+          <th>Delete?</th>
+        </tr>
+        {% for created_rooms in created_rooms %}
+        <tr>
+          <td>
+            <a href="/session/{{created_rooms.id}}" target="_blank">
+              <img
+                id="img1"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png"
+              />
+              {{created_rooms.room_name}}
+            </a>
+          </td>
+          <td>{{created_rooms.room_language}}</td>
+          <td>{{created_rooms.owner_id}}</td>
+          <td>
+            <button
+              type="button"
+              class="close"
+              onClick="deleteRoom('{{ created_rooms.room_id }}')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
     </div>
-  </body>
-  
-  <style>
-body {
+  </div>
+</body>
+
+<style>
+  body {
     background-image: url("static/university_background.jpg");
     background-repeat: no-repeat;
-    background-attachment: fixed; 
+    background-attachment: fixed;
     background-size: cover;
-    color:black;
+    color: black;
   }
-  </style>
-  {% endblock %}
-
+</style>
+{% endblock %}
