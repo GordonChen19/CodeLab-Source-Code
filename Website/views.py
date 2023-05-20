@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from .models import *
 import json
 import sqlite3 as sql
-import runcode
+from . import runcode
 
 
 conn=sql.connect('database.db')
@@ -105,7 +105,7 @@ default_cols = "60"
 
 @views.route("/session/<room_id>/python",methods=['POST','GET'])
 @login_required
-def enter_room(room_id): 
+def enter_room_python(room_id): 
     if(request.method=='POST'):
         code = request.form['code']
         run = runcode.RunPyCode(code)
@@ -129,7 +129,7 @@ def enter_room(room_id):
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])
 @login_required
-def enter_room(room_id): 
+def enter_room_C(room_id): 
     if(request.method=='POST'):
         code = request.form['code']
         run = runcode.RunCCode(code)
@@ -153,7 +153,7 @@ def enter_room(room_id):
 
 @views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
 @login_required
-def enter_room(room_id): 
+def enter_room_Cpp(room_id): 
     if(request.method=='POST'):
         code = request.form['code']
         run = runcode.RunCppCode(code)
