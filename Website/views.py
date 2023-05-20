@@ -116,11 +116,11 @@ def enter_room_python(room_id):
         code = default_python_code
         resrun = 'No result!'
         rescompil = 'No Compilation for Python'
-        
+    
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
-                           target="runpy",
+                           target=url_for('views.enter_room_python',room_id=room_id),
                            resrun=resrun,
                            rescomp=rescompil,
                            rows=default_rows,
@@ -144,7 +144,7 @@ def enter_room_C(room_id):
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
-                           target="runc",
+                           target=url_for('views.enter_room_C',room_id=room_id),
                            resrun=resrun,
                            rescomp=rescompil,
                            rows=default_rows,
@@ -168,7 +168,7 @@ def enter_room_Cpp(room_id):
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
-                           target="runcpp",
+                           target=url_for('views.enter_room_Cpp',room_id=room_id),
                            resrun=resrun,
                            rescomp=rescompil,
                            rows=default_rows,
