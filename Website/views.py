@@ -41,10 +41,8 @@ def home():
 @login_required
 def view_session(room_id):
     room=Room.query.filter_by(id=room_id).first()
-    if not room:
-        return "ROOM DOES NOT EXIST"
-    return render_template('ide.html',user=current_user)
-    # return render_template('code_editor.html')
+    
+    return render_template('code_editor.html',user=current_user)
 
 @views.route("/projects",methods=['GET','POST'])
 @login_required
@@ -71,4 +69,42 @@ def view_invitations():
         rooms_dict[rooms.room_name]=[rooms.room_language,owner.first_name]
     #Project name #Room Langugae #Owner
     return render_template('projects.html',user=current_user,rooms_dict=rooms_dict,created_rooms=created_rooms) 
+
+
+
+
+'''
+code editor navigation
+'''
+
+
+default_c_code = """#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    printf("Hello C World!!\\n");
+    return 0;
+}    
+"""
+
+default_cpp_code = """#include <iostream>
+
+using namespace std;
+
+int main(int argc, char **argv)
+{
+    cout << "Hello C++ World" << endl;
+    return 0;
+}
+"""
+
+default_python_code = """import sys
+import os
+
+if __name__ == "__main__":
+    print "Hello Python World!!"
+"""
+
+default_rows = "15"
+default_cols = "60"
 
