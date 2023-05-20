@@ -124,7 +124,8 @@ def enter_room(room_id):
                            resrun=resrun,
                            rescomp=rescompil,
                            rows=default_rows,
-                           cols=default_cols)
+                           cols=default_cols,
+                           room_id=room_id)
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])
 @login_required
@@ -147,7 +148,8 @@ def enter_room(room_id):
                            resrun=resrun,
                            rescomp=rescompil,
                            rows=default_rows,
-                           cols=default_cols)
+                           cols=default_cols,
+                           room_id=room_id)
 
 @views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
 @login_required
@@ -170,4 +172,7 @@ def enter_room(room_id):
                            resrun=resrun,
                            rescomp=rescompil,
                            rows=default_rows,
-                           cols=default_cols)
+                           cols=default_cols,
+                           room_id=room_id
+                           )
+                    
