@@ -125,7 +125,8 @@ def enter_room_python(room_id):
                            rescomp=rescompil,
                            rows=default_rows,
                            cols=default_cols,
-                           room_id=room_id)
+                           room_id=room_id,
+                            h_reference=f'/session/{room_id}/python')
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])
 @login_required
@@ -149,7 +150,8 @@ def enter_room_C(room_id):
                            rescomp=rescompil,
                            rows=default_rows,
                            cols=default_cols,
-                           room_id=room_id)
+                           room_id=room_id,
+                            h_reference=f'/session/{room_id}/C')
 
 @views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
 @login_required
@@ -173,6 +175,7 @@ def enter_room_Cpp(room_id):
                            rescomp=rescompil,
                            rows=default_rows,
                            cols=default_cols,
-                           room_id=room_id
+                           room_id=room_id,
+                           h_reference=f'/session/{room_id}/Cpp'
                            )
                     
