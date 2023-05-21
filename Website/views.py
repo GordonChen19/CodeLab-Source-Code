@@ -122,11 +122,12 @@ def enter_room_python(room_id):
         rescompil = 'No Compilation for Python'
         response=None 
         
-    #rendering chat history
-    conversation=Chats.query.filter_by(room_id=room_id).all()
+    # rendering chat history
+    # conversation=Chats.query.filter_by(room_id=room_id).all()
     conversationRecord=[]
-    for c in conversation:
-        conversationRecord.append([c.query,c.response])
+    # if conversation is not None:
+    #     for c in conversation:
+    #         conversationRecord.append([c.query,c.response])
         
     
     return render_template('code_editor.html',
