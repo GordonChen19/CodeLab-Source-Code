@@ -15,11 +15,6 @@ class Room(db.Model):
     room_language = db.Column(db.String(120), nullable=False, default="python")
     data=db.Column(db.String,default=None)
     owner_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
-
-class InvitedUser(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email=db.Column(db.String(150),nullable=False)
-    room_id=db.Column(db.Integer,db.ForeignKey('room.id'),nullable=False)
     
 class Chats(db.Model):
     id=db.Column(db.Integer,primary_key=True)

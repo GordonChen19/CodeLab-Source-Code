@@ -42,7 +42,7 @@ def view_invitations():
 
     for rooms in invited_rooms:
         rooms_dict[rooms.room_name]=rooms.room_language
-    #Project name #Room Langugae #Owner
+    #Project name #Room Langugae 
     return render_template('projects.html',user=current_user,
                            rooms_dict=rooms_dict,room=room) 
 
