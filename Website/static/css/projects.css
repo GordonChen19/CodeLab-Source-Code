@@ -1,6 +1,9 @@
 #img1 {
-  width: 30px;
-  height: 30px;
+  height:100px;
+  width:auto;
+  position:absolute;
+  top:20%;
+  right:10%;
 }
 
 .col {
@@ -44,3 +47,4 @@ table {
 h1 {
   color: green;
 }
+

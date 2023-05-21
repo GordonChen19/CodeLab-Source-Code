@@ -13,7 +13,18 @@ search %}
 
   <div class="allcourses-wrapper">
     <div class="allCourses-wrapper">
-      <h2>New Project</h2><br>
+
+
+
+      <button id="myButton">
+        <img id="img1" src="https://cdn4.iconfinder.com/data/icons/files-13/100/circle-things-31-512.png" alt="img not found">
+        </button>
+             <div id="myPopup" class="popup">
+          <div class="popup-content">
+              
+
+
+            <h2>New Project</h2><br>
       <form method="POST">
         <div class="mb-3">
           <input
@@ -24,14 +35,47 @@ search %}
             placeholder="Room Name"
           />
         </div>
-        <label for="room_language">Choose a Language:</label>
-          <select id="room_language" name="room_language">
-            <option value="python">Python</option>
-            <option value="C">C</option>
-            <option value="Cpp">C++</option>
-          </select>
+
+        <h2>Choose a Language</h2>
+        <input type="radio" class="btn-check" name="options" id="python" autocomplete="off">
+        <label class="btn btn-secondary" for="python">Python</label>
+        <input type="radio" class="btn-check" name="options" id="C" autocomplete="off">
+        <label class="btn btn-secondary" for="C">C</label>
+        <input type="radio" class="btn-check" name="options" id="Cpp" autocomplete="off">
+        <label class="btn btn-secondary" for="Cpp">C++</label>
+
         <button type="submit" class="btn btn-primary">Create New File</button>
       </form>
+
+
+
+
+              <button id="closePopup">
+                    Close
+                </button>
+          </div>
+      </div>
+    
+      <script>
+          myButton.addEventListener("click", function () {
+              myPopup.classList.add("show");
+          });
+          closePopup.addEventListener("click", function () {
+              myPopup.classList.remove("show");
+          });
+          window.addEventListener("click", function (event) {
+              if (event.target == myPopup) {
+                  myPopup.classList.remove("show");
+              }
+          });
+      </script>
+
+
+
+
+
+      
+      
 <br><br>
 <h2>Exisitng Projects</h2><br>
 
@@ -62,10 +106,6 @@ search %}
         <tr>
           <td>
             <a href="/session/{{room.id}}/{{room.room_language}}" target="_blank">
-              <img
-                id="img1"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png"
-              />
               {{room.room_name}}
             </a>
           </td>
