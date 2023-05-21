@@ -2,6 +2,7 @@ from flask import Blueprint, render_template,request,flash,redirect, url_for
 from werkzeug.security import generate_password_hash,check_password_hash
 from .models import User
 from . import db 
+from .views import views
 from flask_login import login_user,login_required,logout_user,current_user
 
 auth=Blueprint('auth',__name__)
@@ -30,7 +31,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('views.home'))
 
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
