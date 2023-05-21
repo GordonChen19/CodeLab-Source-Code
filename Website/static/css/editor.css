@@ -1,5 +1,5 @@
 body {
-    background: #E5E4DF;
+    background: #333333;
     color: #000305;
     font-size: 87.5%; /* Base font size: 14px */
     font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -87,10 +87,6 @@ li {
     height: 80%;
 }
 
-#text-code-ace {
-    padding: 2px;
-    border: 1px solid rgb(169, 169, 169);
-}
 
 #text-result {
     position: absolute;

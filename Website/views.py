@@ -114,7 +114,7 @@ def enter_room_python(room_id):
 
     else:
         room=Room.query.filter_by(id=room_id).first()
-        if(room is None):
+        if(room.data == 'default'):
             code = default_python_code
         else:
             code=room.data
@@ -149,6 +149,8 @@ def enter_room_C(room_id):
         code = request.form['code']
         run = runcode.RunCCode(code)
         rescompil, resrun = run.run_c_code()
+        print("Printing resrun")
+        print(resrun)
         if not resrun:
             resrun = 'No result!'
     else:
