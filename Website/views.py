@@ -1,11 +1,9 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash, jsonify
+from flask import Blueprint, render_template, request, url_for, redirect, flash
 from flask_login import login_required, current_user
 from .models import *
 import json
 import sqlite3 as sql
 from . import runcode
-from . import db
-
 conn=sql.connect('database.db')
 c=conn.cursor()
 
@@ -41,24 +39,21 @@ def view_invitations():
     invited_rooms=InvitedUser.query.filter_by(email=current_user.email).all()
     rooms_dict={}
 
-    created_rooms=Room.query.filter_by(owner_id=current_user.id).all()
-    owner=User.query.filter_by(id=current_user.id).first()
-
     for rooms in invited_rooms:
-        owner=User.query.filter_by(id=rooms.owner_id).first()
-        rooms_dict[rooms.room_name]=[rooms.room_language,owner.first_name]
+        rooms_dict[rooms.room_name]=rooms.room_language
     #Project name #Room Langugae #Owner
-    return render_template('projects.html',user=current_user,rooms_dict=rooms_dict,created_rooms=created_rooms,owner=owner) 
+    return render_template('projects.html',user=current_user,
+                           rooms_dict=rooms_dict) 
 
 @views.route('/projects', methods=['DELETE'])
 @login_required
 def deleteRoom():
-    created_rooms = json.loads(request.data)
-    roomID = room['roomID']
-    created_rooms = room.query.get(roomID)
-    if room:
-        if room.owner_id == current_user.id:
-            db.session.delete(created_rooms)
+    room = json.loads(request.data)
+    room_id = room['room_id']
+    room = room.query.get(room_id)
+    if vehicle:
+        if room.id == current_user.id:
+            db.session.delete(room)
             db.session.commit()
     return jsonify({})
 
