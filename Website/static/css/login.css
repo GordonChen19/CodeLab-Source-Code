@@ -15,7 +15,8 @@
 }
 
 body, input{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
     color: var(--white-color);
 }
 
@@ -34,7 +35,7 @@ body, input{
     height: 2000px;
     border-radius: 50%;
     background: linear-gradient(-45deg, var(--dark-color), var(--colorMain) ); 
-    top: -10%;
+    top: 0%;
     right: 48%;
     transform: translateY(-50%);
     z-index: 6;
@@ -146,7 +147,6 @@ form.sign-up-form{
 }
 
 
-
 .panels-container{
     position: absolute;
     width: 100%;
@@ -185,9 +185,9 @@ form.sign-up-form{
 }
 
 .panel h3{
-font-weight: 600;
-line-height: 1;
-font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.5rem;
 }
 
 .panel p{
