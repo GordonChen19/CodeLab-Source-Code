@@ -1,4 +1,4 @@
-function deleteRoom(room_id) {
+function deleteRoom(roomID) {
     if (confirm("Are you sure you want to delete this room?")) {
         fetch('/projects', {
             method: 'DELETE',

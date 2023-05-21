@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash
+from flask import Blueprint, render_template, request, url_for, redirect, flash, jsonify
 from flask_login import login_required, current_user
 from .models import *
 import json
 import sqlite3 as sql
 from . import runcode
+from . import db
 
 conn=sql.connect('database.db')
 c=conn.cursor()
@@ -65,12 +66,12 @@ def view_invitations():
 @views.route('/projects', methods=['DELETE'])
 @login_required
 def deleteRoom():
-    room = json.loads(request.data)
-    room_id = room['room_id']
-    room = room.query.get(room_id)
-    if vehicle:
-        if room.id == current_user.id:
-            db.session.delete(room)
+    created_rooms = json.loads(request.data)
+    roomID = room['roomID']
+    created_rooms = room.query.get(roomID)
+    if room:
+        if room.owner_id == current_user.id:
+            db.session.delete(created_rooms)
             db.session.commit()
     return jsonify({})
 

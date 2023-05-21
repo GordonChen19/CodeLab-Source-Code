@@ -76,12 +76,12 @@ search %}
           <td>{{owner.username}}</td>
           <td>
             <button
-              type="button"
-              class="close"
-              onClick="deleteRoom('{{ created_rooms.id }}')"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+          type="button"
+          class="close"
+          onClick="deleteRoom(`{{ created_rooms.id }}`)"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
           </td>
         </tr>
         {% endfor %}
