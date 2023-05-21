@@ -28,6 +28,7 @@ def view_invitations():
         if len(room_name)==0:
             flash('Please input a name for the room',category='error')
         room_language=request.form.get('room_language')
+        
         RoomByName = Room.query.filter_by(room_name=room_name).first()
         if RoomByName:
             flash('Room Name already exists.', category='error')
@@ -37,14 +38,9 @@ def view_invitations():
             db.session.commit() 
 
     room=Room.query.filter_by(owner_id=current_user.id).all()
-    invited_rooms=InvitedUser.query.filter_by(email=current_user.email).all()
-    rooms_dict={}
-
-    for rooms in invited_rooms:
-        rooms_dict[rooms.room_name]=rooms.room_language
+    
     #Project name #Room Langugae 
-    return render_template('projects.html',user=current_user,
-                           rooms_dict=rooms_dict,room=room) 
+    return render_template('projects.html',user=current_user,room=room) 
 
 @views.route('/projects', methods=['DELETE'])
 @login_required
