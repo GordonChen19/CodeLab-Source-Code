@@ -356,3 +356,27 @@ form.sign-up-form{
         left: 50%;
     }
 }
+
+
+
+.navbar {
+    background-color: #003060;
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logoheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin-left: 30px;
+  }
+  
+  .logoheader img {
+    height: 10vh;
+    margin-right: 5px;
+  }
