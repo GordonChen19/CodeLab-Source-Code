@@ -1,138 +1,98 @@
 {% extends "base.html" %} {% block title %}PROJECTS{% endblock %} {% block
-search %}
-<h3
-  style="text-align: center; margin-top: 50px; color: #daac62; font-size: 32px"
->
-  PROJECTS
-</h3>
-{% endblock %} {% block content %}
-<link rel="stylesheet" href="static/css/projects.css" />
-<script src="static/js/projects.js"></script>
-
-<body>
-
-  <div class="allcourses-wrapper">
-    <div class="allCourses-wrapper">
-
-
-
-      <button id="myButton">
-        <img id="img1" src="https://cdn4.iconfinder.com/data/icons/files-13/100/circle-things-31-512.png" alt="img not found">
-        </button>
-             <div id="myPopup" class="popup">
-          <div class="popup-content">
-              
-
-
-            <h2>New Project</h2><br>
-      <form method="POST">
-        <div class="mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="room_name"
-            name="room_name"
-            placeholder="Room Name"
-          />
-        </div>
-
-        <h2>Choose a Language</h2>
-        <input type="radio" class="btn-check" name="room_language" id="room_language" value='python' autocomplete="off">
-        <label class="btn btn-secondary" for="python">Python</label>
-        <input type="radio" class="btn-check" name="room_language" id="room_language" value='C' autocomplete="off">
-        <label class="btn btn-secondary" for="C">C</label>
-        <input type="radio" class="btn-check" name="room_language" id="room_language" value='Cpp' autocomplete="off">
-        <label class="btn btn-secondary" for="Cpp">C++</label>
-
-        <button type="submit" class="btn btn-primary">Create New File</button>
-      </form>
-
-
-
-
-              <button id="closePopup">
-                    Close
-                </button>
-          </div>
+  search %}
+ 
+  {% endblock %} {% block content %}
+  <link rel="stylesheet" href="static/css/projects.css" />
+  <script src="static/js/projects.js"></script>
+  
+  <body>
+    <br><br><br><br><br>
+    <div class="allcourses-wrapper-1">
+      <button type="button" class="collapsible">New Project</button>
+      <div class="content">
+        <form method="POST" id="roomID">
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="room_name"
+              name="room_name"
+              placeholder="Room Name"
+            />
+          </div><br>
+          <label for="room_language" id="languageID">Choose a Language:</label>
+            <select id="room_language" name="room_language">
+              <option value="python">Python</option>
+              <option value="C">C</option>
+              <option value="Cpp">C++</option>
+            </select><br><br>
+          <button type="submit" class="createNewBtn">Create New File</button>
+        </form>
       </div>
-    
-      <script>
-          myButton.addEventListener("click", function () {
-              myPopup.classList.add("show");
-          });
-          closePopup.addEventListener("click", function () {
-              myPopup.classList.remove("show");
-          });
-          window.addEventListener("click", function (event) {
-              if (event.target == myPopup) {
-                  myPopup.classList.remove("show");
-              }
-          });
-      </script>
-
-
-
-
-
-      
-      
-<br><br>
-<h2>Exisitng Projects</h2><br>
-
-      <!-- edit -->
-      <!-- <div class="container text-center">
-        <div class="row">
-          {% for created_rooms in created_rooms %}
-          <div class="col">
-            <a href="/session/{{created_rooms.id}}" target="_blank">
-              <img
-                id="img1"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/2048px-.docx_icon.svg.png"
-              />
-              {{created_rooms.room_name}}
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div> -->
-
-      <table class="table table-striped-columns">
-        <tr>
-          <th>Room ID</th>
-          <th>Room Language</th>
-          <th>Delete?</th>
-        </tr>
-        {% for room in room %}
-        <tr>
-          <td>
-            <a href="/session/{{room.id}}/{{room.room_language}}" target="_blank">
-              {{room.room_name}}
-            </a>
-          </td>
-          <td>{{room.room_language}}</td>
-          <td>
-            <button
-          type="button"
-          class="close"
-          onClick="deleteRoom(`{{ room.id }}`)"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
     </div>
-  </div>
-</body>
+    <br>
+    <div class="allcourses-wrapper-1">
+      <button type="button" class="collapsible">Existing Projects</button>
+      <div class="content">
+        <table class="table table-striped-columns">
+          <tr class="room-title">
+            <th>Room ID</th>
+            <th>Room Language</th>
+            <th>Delete?</th>
+          </tr>
+          {% for room in room %}
+          <tr class="room-child">
+            <td>
+              <a href="/session/{{room.id}}/{{room.room_language}}" target="_blank">
+                {{room.room_name}}
+              </a>
+            </td>
+            <td>{{room.room_language}}</td>
+            <td>
+              <button type="button" class="close" onClick="deleteRoom(`{{ room.id }}`)"> 
+                <span aria-hidden="true">Yes</span>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    
+  </body>
+  
 
-<style>
-  body {
-    background-image: url("static/university_background.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    color: black;
-  }
-</style>
-{% endblock %}
+  
+  <style>
+    body {
+      background-image: url("static/university_background.jpg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      color: black;
+    }
+    
+  </style>
+  <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+        });
+    }
+  </script>
+  
+  </body>
+  
+  
+  
+  {% endblock %}
+  

@@ -1,9 +1,126 @@
-#img1 {
-  height:100px;
-  width:auto;
-  position:absolute;
-  top:20%;
-  right:10%;
+body {
+  background-image: url("static/university_background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: black;
+}
+
+
+.allcourses-wrapper-1{
+width: 100%;
+justify-content: center;
+}
+
+
+/* NEW PROJECT PART */
+.collapsible {
+background-color: #777;
+color: white;
+cursor: pointer;
+padding: 20px;
+width: 50%;
+border: none;
+text-align: center;
+outline: none;
+font-size: 20px;
+margin: 0 auto;
+display: block;
+}
+
+.active, .collapsible:hover {
+background-color: #555;
+}
+
+.content {
+width: 50%;
+text-align: center;
+display: none;
+overflow: hidden;
+background-color: #f1f1f1;
+margin: 0 auto;
+display: block;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+/* FORM INPUT */
+#roomID{
+width: 100%;
+padding: 10px;
+font-weight: bold;
+}
+
+#room_name{
+padding: 10px;
+border: 3px solid #777;
+border-radius: 20px;
+width: 40%;
+font-size: 15px;
+}
+
+
+/* PROGRAMMING LANGUAGE */
+.custom-select{
+position: relative;
+}
+
+.custom-select select{
+display: none;
+}
+
+
+
+/* CREATE NEW BUTTON */
+.createNewBtn{
+padding: 10px;
+border-radius: 20px;
+font-size: 15px;
+border: 2px solid #777;
+}
+
+.createNewBtn:hover{
+cursor: pointer;
+background-color: #777;
+color: #f1f1f1;
+}
+
+/* TABLE FORMATING*/
+table,tr,th,td{
+border-collapse:collapse;
+padding: 10px;
+font-size: 15px;
+text-transform: uppercase;
+}
+
+.room-title{
+background-color: #000000;
+color:#f1f1f1;
+}
+
+
+.room-child:hover{
+background-color: #d5d5d5;
+color: #000000;
+}
+
+a{
+text-decoration: none;
+}
+
+/* DELETE BUTTON */
+.close{
+text-transform: uppercase;
+width: 20%;
+border: none;
+background: none;
+font-size: 15px;
+}
+
+.close:hover{
+cursor: pointer;
+font-weight: bold;
+color: rgb(171, 17, 17);
 }
 
 .col {
@@ -43,8 +160,5 @@ table {
 }
 .show {
   display: block;
-}
-h1 {
-  color: green;
 }
 
