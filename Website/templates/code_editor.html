@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+{% block content%}
+
+  <head>
+    <link rel="stylesheet" href="{{url_for("static",filename="css/login.css")}}">
+  </head>
+  
+  <nav class="navbar">
+    <a style="text-decoration: none" class="logoheader" href="/">
+      <img src="{{url_for("static", filename="CodeLabLogo.png")}}">
+    </a>
+  </nav>
+
+
 <html lang="fr">
     <head>
         <title>WebDevTools</title>
@@ -79,3 +91,5 @@
         </script>
     </body>
 </html>
+
+{% endblock %}
