@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash
+from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash
 from flask_login import login_required, current_user
 from .models import *
 import json
@@ -35,7 +35,8 @@ def view_invitations():
             new_room=Room(room_name=room_name,owner_id=current_user.id,room_language=room_language)
             db.session.add(new_room)
             db.session.commit() 
-    
+
+    room=Room.query.filter_by(owner_id=current_user.id).all()
     invited_rooms=InvitedUser.query.filter_by(email=current_user.email).all()
     rooms_dict={}
 
@@ -43,18 +44,18 @@ def view_invitations():
         rooms_dict[rooms.room_name]=rooms.room_language
     #Project name #Room Langugae #Owner
     return render_template('projects.html',user=current_user,
-                           rooms_dict=rooms_dict) 
+                           rooms_dict=rooms_dict,room=room) 
 
 @views.route('/projects', methods=['DELETE'])
 @login_required
 def deleteRoom():
     room = json.loads(request.data)
-    room_id = room['room_id']
-    room = room.query.get(room_id)
-    if vehicle:
-        if room.id == current_user.id:
+    roomId = room['roomId']
+    room = Room.query.get(roomId)
+    if room:
+        if room.owner_id == current_user.id:
             db.session.delete(room)
-            db.session.commit()
+            db.session.commit()  
     return jsonify({})
 
 
