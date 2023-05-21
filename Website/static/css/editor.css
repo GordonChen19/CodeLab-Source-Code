@@ -3,53 +3,23 @@ body {
     color: #000305;
     font-size: 87.5%; /* Base font size: 14px */
     font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 1.429;
     margin: 0;
     padding: 0;
-}
-
-#links{
-    background-color: blueviolet;
-    width: 100%;
-}
-
-ul{
-    width: 80%;
-    background-color: brown;
-    display: block;
-    float: left;
+    text-align: left;
 }
 
 li {
     display: inline;
-    background-color: aqua;
-    color:black;
-    padding: 5px;
-    border-radius: 5px;
-    border: 5px black;
-}
-li:hover{
-    background-color: rgb(122, 194, 194);
-    color:rgb(55, 52, 52);
-}
-
-a{
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-#share-button{
-    width: 10%;
-    display: inline;
-    margin-top: 10px;
 }
 
 #content {
-    background-color: rgb(120, 139, 139);
     position: absolute;
     top: 50px;
     min-height: 600px;
     min-width: 900px;
     width: 100%;
+    height: 90%;
 }
 
 #code {
@@ -138,87 +108,4 @@ a{
 
 .hidden {
     display: none;
-}
-
-
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-}
-
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-} 
-
-/* Form content */
-label{
-    width:100%;
-    display: flex;
-    margin:10px 0;
-}
-
-.buttonsCenter{
-    display: flex;
-    justify-content: center;
-}
-
-.button{
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    display: inline-block;
-}
-
-#cancelButton{
-    background-color: #888;
-    color:black;
-    margin-right: 10px;
-}
-#cancelButton:hover{
-    background-color: #6b6b6b;
-    color:black;
-    cursor: pointer;
-}
-
-#doneButton{
-    background-color: #0d562a;
-    color: white;
-}
-#doneButton:hover{
-    background-color: #08401e;
-    color: white;
-    cursor: pointer;
 }
