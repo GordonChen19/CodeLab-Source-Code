@@ -10,24 +10,33 @@
   </head>
   <body>
     <script>
-      function hideErrorMessage(){
-        var errorMessage=document.getElementById("error-message");
-        errorMessage.style.display="None";
+      function hideErrorMessage() {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.style.display = "None";
       }
     </script>
     <nav class="navbar">
-      <a style="text-decoration: none;" class="logoheader" href="/">
-        <img src="{{url_for("static", filename="SeekLogo.png")}}" >
+      <a style="text-decoration: none" class="logoheader" href="/">
+        <img src="{{url_for("static", filename="CodeLabLogo.png")}}" >
       </a>
       <div class="navbar-nav">
         {% if user.is_authenticated %}
-        
-        <a class="nav-item" id="projects" href="/projects">PROJECTS</a>
-        <a class="nav-item" id="logout" href="/logout">LOGOUT</a>
-      
+        <div class="dropdown">
+          <button class="dropbtn">
+            Welcome {{user.username}}!
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="projects">PROJECTS</a>
+            <a href="logout">LOGOUT</a>
+          </div>
+        </div>
+
         {% else %}
         <a class="nav-item" id="login" href="/login">LOGIN</a>
-        <a class="nav-item" id="signup" href="/sign-up"><button>SIGN UP</button></a>
+        <a class="nav-item" id="signup" href="/sign-up"
+          ><button>SIGN UP</button></a
+        >
         {% endif %}
       </div>
     </nav>
@@ -36,20 +45,30 @@
     messages %} {% for category, message in messages %} {% if category ==
     'error' %}
     <div class="alert-popup" role="alert" id="error-message">
-      <div class="warning">
-        {{ message }}
-      </div>
-      <button type="button" class="close" data-dismiss="alert" onclick="hideErrorMessage()">X</button>
+      <div class="warning">{{ message }}</div>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        onclick="hideErrorMessage()"
+      >
+        X
+      </button>
     </div>
     {% else %}
     <div class="alert-popup" role="alert" id="error-message">
-      <div class="warning">
-        {{ message }}
-      </div>
-      <button type="button" class="close" data-dismiss="alert" onclick="hideErrorMessage()">X</button>
+      <div class="warning">{{ message }}</div>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        onclick="hideErrorMessage()"
+      >
+        X
+      </button>
     </div>
-    {% endif %} {% endfor %} {% endif %} {% endwith %}
-    {% block search %}{% endblock %}
+    {% endif %} {% endfor %} {% endif %} {% endwith %} {% block search %}{%
+    endblock %}
     <div class="container">{% block content %} {% endblock %}</div>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -61,18 +80,18 @@
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"
     ></script>
-    
-{% block javascript %}
+
+    {% block javascript %}
     <script type="text/javascript">
       function deleteNote(noteId) {
-  fetch("/delete-note", {
-    method: "POST",
-    body: JSON.stringify({ noteId: noteId }),
-  }).then((_res) => {
-    window.location.href = "/";
-  });
-  }
-</script>
-{% endblock %}
+        fetch("/delete-note", {
+          method: "POST",
+          body: JSON.stringify({ noteId: noteId }),
+        }).then((_res) => {
+          window.location.href = "/";
+        });
+      }
+    </script>
+    {% endblock %}
   </body>
 </html>
