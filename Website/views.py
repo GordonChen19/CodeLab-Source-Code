@@ -5,11 +5,15 @@ import json
 import sqlite3 as sql
 from . import runcode
 
-
 conn=sql.connect('database.db')
 c=conn.cursor()
 
 views=Blueprint('views',__name__)
+
+
+'''
+routing
+'''
 
 @views.route('/',methods=['GET','POST'])
 def home():
@@ -27,16 +31,7 @@ def home():
 #         return redirect(url_for('views.view_session',room_id=new_room.id))
 #     return render_template('create_session.html')
 
-# @views.route('/invite_user',method=['GET','POST'])
-# @login_required
-# def invite_user(room_id):
-#     if request.method=='POST':
-#         email=request.form.get('email')
-#         user=User.query.filter_by(email=email).first()
-#         newInvite=InvitedUser(email=email,room_id=room_id)
-#         db.session.add(newInvite)
-#         db.session.commit()
-    
+
 
 
 @views.route("/projects",methods=['GET','POST'])
@@ -44,6 +39,8 @@ def home():
 def view_invitations():
     if request.method=='POST': #newroom
         room_name=request.form.get('room_name')
+        if len(room_name)==0:
+            flash('Please input a name for the room',category='error')
         room_language=request.form.get('room_language')
         RoomByName = Room.query.filter_by(room_name=room_name).first()
         if RoomByName:
@@ -66,15 +63,13 @@ def view_invitations():
     return render_template('projects.html',user=current_user,rooms_dict=rooms_dict,created_rooms=created_rooms,owner=owner) 
 
 @views.route('/projects', methods=['DELETE'])
+@login_required
 def deleteRoom():
-    print("hello")
     room = json.loads(request.data)
     room_id = room['room_id']
     room = room.query.get(room_id)
-    print("hello")
-    print(room)
-    if room:
-        if room.owner_id == current_user.id:
+    if vehicle:
+        if room.id == current_user.id:
             db.session.delete(room)
             db.session.commit()
     return jsonify({})
@@ -109,36 +104,53 @@ default_python_code = """import sys
 import os
 
 if __name__ == "__main__":
-    print "Hello Python World!!"
+    print ("Hello Python World!!")
 """
 
 default_rows = "15"
 default_cols = "60"
 
+
+
+
 @views.route("/session/<room_id>/python",methods=['POST','GET'])
 @login_required
 def enter_room_python(room_id): 
-    if(request.method=='POST, invite'):
-        email=request.form.get('email')
-        print(email)
-        print(room_id)
-        new_share=InvitedUser(email=email,room_id=room_id)
-        db.session.add(new_share)
-        db.session.commit() 
-        
-    if(request.method=='POST' and 'code'):
-        code = request.form['code']
-        run = runcode.RunPyCode(code)
-        rescompil, resrun = run.run_py_code()
-        if not resrun:
-            resrun = 'No result!'
+    if(request.method=='POST'):
+        button = request.form.get(button)
+        if button=='run': #run code
+            code = request.form['code'] #preserves indentation
+            print(code)
+            run = runcode.RunPyCode(code)
+            rescompil, resrun = run.run_py_code()
+            if not resrun:
+                resrun = 'No result!'
+        elif button == 'save and exit':
+            room=Room.query.filter_by(id=room_id).first()
+            code=request.form['code']
+            room.data=code
+            db.session.commit()
+            redirect(url_for('views.view_invitations'))
+        elif button == 'revert to default': 
+            code=default_python_code
+
     else:
-        code = default_python_code
+        room=Room.query.filter_by(id=room_id).first()
+        if(room is None):
+            code = default_python_code
+        else:
+            code=room.data
         resrun = 'No result!'
         rescompil = 'No Compilation for Python'
+        response=None 
+        
+    #rendering chat history
+    conversation=Chats.query.filter_by(room_id=room_id).all()
+    conversationRecord=[]
+    for c in conversation:
+        conversationRecord.append([c.query,c.response])
+        
     
-    owner=User.query.filter_by(id=current_user.id).first()
-    created_rooms=Room.query.filter_by(id=room_id).first()
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
@@ -148,9 +160,8 @@ def enter_room_python(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
-                            h_reference=f'/session/{room_id}/python',
-                            created_rooms=created_rooms,
-                            owner=owner)
+                           conversation=conversationRecord,
+                            h_reference=f'/session/{room_id}/python')
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])
 @login_required
@@ -166,8 +177,6 @@ def enter_room_C(room_id):
         resrun = 'No result!'
         rescompil = ''
         
-    created_rooms=Room.query.filter_by(id=room_id).first()
-    owner=User.query.filter_by(id=current_user.id).first()
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
@@ -177,8 +186,7 @@ def enter_room_C(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
-                            h_reference=f'/session/{room_id}/C',
-                            created_rooms=created_rooms,owner=owner)
+                            h_reference=f'/session/{room_id}/C')
 
 @views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
 @login_required
@@ -194,8 +202,6 @@ def enter_room_Cpp(room_id):
         resrun = 'No result!'
         rescompil = ''
         
-    created_rooms=Room.query.filter_by(id=room_id).first()
-    owner=User.query.filter_by(id=current_user.id).first()
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
@@ -205,6 +211,7 @@ def enter_room_Cpp(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
-                           h_reference=f'/session/{room_id}/Cpp',
-                           created_rooms=created_rooms,owner=owner
+                           h_reference=f'/session/{room_id}/Cpp'
                            )
+    
+
