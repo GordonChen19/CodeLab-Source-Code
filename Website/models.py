@@ -8,22 +8,18 @@ class User(db.Model,UserMixin):
     email=db.Column(db.String(150),unique=True)
     password=db.Column(db.String(150))
     first_name=db.Column(db.String(150))
-    
-    sid = db.Column(db.String(80), unique=True, nullable=True,default=None)
-    
-    
+
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     room_name = db.Column(db.String(120), unique=True, nullable=False)
-    room_language = db.Column(db.String(120), nullable=False, default="python")
-    data=db.Column(db.LargeBinary)
-    sid = db.Column(db.String(120),nullable=True,default=None)
+    room_language = db.Column(db.String(120), nullable=False)
+    data=db.Column(db.String,default=None)
     owner_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
     
-    # def room_members(self):
-    #     return [self.owner,] + [User.query.filter_by(email=i.email_address).first() for i in self.invited_users]
-
-class InvitedUser(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email=db.Column(db.String(150),nullable=False)
+class Chats(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    query=db.Column(db.String(1000),index=True)
+    response=db.Column(db.String(1000),index=True)
     room_id=db.Column(db.Integer,db.ForeignKey('room.id'),nullable=False)
+    
+    

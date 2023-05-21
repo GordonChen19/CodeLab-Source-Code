@@ -1,10 +1,9 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash
+from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash
 from flask_login import login_required, current_user
 from .models import *
 import json
 import sqlite3 as sql
 from . import runcode
-
 conn=sql.connect('database.db')
 c=conn.cursor()
 
@@ -19,19 +18,6 @@ routing
 def home():
     return render_template("home.html",user=current_user)
 
-# @views.route('/create_room',methods=['GET','POST'])
-# @login_required
-# def create_room():
-#     if request.method=='POST':
-#         room_name=request.form.get('room_name')
-#         room_language=request.form.get('room_language')
-#         new_room=Room(room_name=room_name,room_language=room_language)
-#         db.session.add(new_room)
-#         db.session.commit()
-#         return redirect(url_for('views.view_session',room_id=new_room.id))
-#     return render_template('create_session.html')
-
-
 
 
 @views.route("/projects",methods=['GET','POST'])
@@ -42,6 +28,7 @@ def view_invitations():
         if len(room_name)==0:
             flash('Please input a name for the room',category='error')
         room_language=request.form.get('room_language')
+        
         RoomByName = Room.query.filter_by(room_name=room_name).first()
         if RoomByName:
             flash('Room Name already exists.', category='error')
@@ -49,29 +36,22 @@ def view_invitations():
             new_room=Room(room_name=room_name,owner_id=current_user.id,room_language=room_language)
             db.session.add(new_room)
             db.session.commit() 
+
+    room=Room.query.filter_by(owner_id=current_user.id).all()
     
-    invited_rooms=InvitedUser.query.filter_by(email=current_user.email).all()
-    rooms_dict={}
-
-    created_rooms=Room.query.filter_by(owner_id=current_user.id).all()
-    owner=User.query.filter_by(id=current_user.id).first()
-
-    for rooms in invited_rooms:
-        owner=User.query.filter_by(id=rooms.owner_id).first()
-        rooms_dict[rooms.room_name]=[rooms.room_language,owner.first_name]
-    #Project name #Room Langugae #Owner
-    return render_template('projects.html',user=current_user,rooms_dict=rooms_dict,created_rooms=created_rooms,owner=owner) 
+    #Project name #Room Langugae 
+    return render_template('projects.html',user=current_user,room=room) 
 
 @views.route('/projects', methods=['DELETE'])
 @login_required
 def deleteRoom():
     room = json.loads(request.data)
-    room_id = room['room_id']
-    room = room.query.get(room_id)
-    if vehicle:
-        if room.id == current_user.id:
+    roomId = room['roomId']
+    room = Room.query.get(roomId)
+    if room:
+        if room.owner_id == current_user.id:
             db.session.delete(room)
-            db.session.commit()
+            db.session.commit()  
     return jsonify({})
 
 
@@ -109,8 +89,6 @@ if __name__ == "__main__":
 
 default_rows = "15"
 default_cols = "60"
-
-
 
 
 @views.route("/session/<room_id>/python",methods=['POST','GET'])
