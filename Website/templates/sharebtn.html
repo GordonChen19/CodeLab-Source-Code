@@ -125,12 +125,12 @@
                 <span class="close">&times;</span>
                 
                 <form action="" method="POST">
-                    <label for="">Share '{documentName}' </label>
+                    <label for="">Share '{{created_rooms.room_name}}' </label>
                     <!-- can follow the sign up page format for email input -->
                     <input type="email" placeholder="Add people"> 
                     <label for="">
                         People with access <br>
-                        {currentUser}<br>
+                        {{owner.username}}<br>
                     </label>
                     <div class="buttonsCenter">
                         <button id="cancelButton" class="button">Cancel</button>

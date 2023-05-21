@@ -20,7 +20,7 @@
         <div id="content">
             <!-- ************  CODING ZONE  ************ -->
             <div id="code">
-                <form method="post" action="{{ target }}">
+                <form method="post,code" action="{{ target }}">
                     <div id="title-code" class="head-section">
                     Source Code
                     </div>
@@ -63,13 +63,17 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 
-                <form action="" method="POST">
-                    <label for="">Share '{documentName}'</label>
+                <form method="POST,invite">
+                    <label for="">Share {{created_rooms.room_name}}</label>
                     <!-- can follow the sign up page format for email input -->
-                    <input type="email" placeholder="Add people"> 
-                    <label for="">
+                    <input type="email" 
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Add people"> 
+                    <label for="email">
                         People with access <br>
-                        {currentUser}<br>
+                         {{owner.username}}<br>
                     </label>
                     <div class="buttonsCenter">
                         <input id="cancelButton" type="submit"class="button" value="Cancel">
