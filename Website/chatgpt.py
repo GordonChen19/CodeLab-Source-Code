@@ -5,7 +5,7 @@ chatgpt query
 import openai
 import os
 
-MAPBOX_SECRET_KEY=os.getenv("MAPBOX_SECRET_KEY")
+CHATGPT_SECRET_KEY=os.getenv("CHATGPT_SECRET_KEY")
 
 def chatgpt(query):
 
