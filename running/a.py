@@ -1,4 +1,5 @@
-import sys
-import os
-
-print ("Hello Python World!!")
+import sys
+import os
+
+if __name__ == "__main__":
+    print ("Hello Python World!!")

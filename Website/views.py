@@ -91,10 +91,14 @@ default_rows = "15"
 default_cols = "60"
 
 
+
+
 @views.route("/session/<room_id>/python",methods=['POST','GET'])
 @login_required
 def enter_room_python(room_id): 
+    print("reached this portion")
     if(request.method=='POST'):
+        print("reached this portion")
         button = request.form.get(button)
         if button=='run': #run code
             code = request.form['code'] #preserves indentation
