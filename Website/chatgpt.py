@@ -4,12 +4,14 @@ chatgpt query
 
 import openai
 import os
+from dotenv import load_dotenv
 
-CHATGPT_SECRET_KEY=os.getenv("CHATGPT_SECRET_KEY")
+load_dotenv()
+
 
 def chatgpt(query):
 
-    openai.api_key = '{}'
+    openai.api_key = CHATGPT_SECRET_KEY
     messages = [ {"role": "system", "content": 
                 "You are a intelligent assistant."} ]
 

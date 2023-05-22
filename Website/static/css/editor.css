@@ -1,132 +1,67 @@
 body {
-  background: #e5e4df;
+  background: #E5E4DF;
   color: #000305;
-  font-size: 87.5%;
-  /* Base font size: 14px */
-  font-family: "Trebuchet MS", Trebuchet, "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-size: 87.5%; /* Base font size: 14px */
+  font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   line-height: 1.429;
   margin: 0;
   padding: 0;
-
+  text-align: left;
 }
 
+li {
+  display: inline;
+}
 
-.codeArea{
+#content {
+  position: absolute;
+  top: 50px;
+  min-height: 600px;
+  min-width: 900px;
   width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* LEFT DIV */
-
-#left {
-  width: 50%;
-  float:left;
-  height: 100%;
-  /* background-color: brown; */
+  height: 90%;
 }
 
 #code {
-  position: relative;
-  width: 90%;
-  min-height: 70%;
-  margin-top: 20px;
-  margin-left: 20px;
-  /* background-color: blueviolet; */
+  position: absolute;
+  height: 60%;
+  min-height: 350px;
+  min-width: 400px;
+  left: 10px;
+  top: 5px;
+  width: 48%;
 }
-
-form{
-  width: 100%;
-}
-
-#launch-button { 
-  border: 1px solid rgb(4, 66, 4);
-  color: rgb(4, 66, 4);
-  border-radius: 20px;
-  height: 30px;
-  width:10%;
-  right:0;
-}
-
-#launch-button:hover{
-  background-color: rgb(4, 66, 4);
-  color: #f1f1f1;
-  cursor: pointer;
-}
-
-
 
 #result {
   position: absolute;
-  left: 1%;
-  top: 60%;
-  width: 24%;
-  height: 48%;
+  height: 60%;
+  min-height: 350px;
+  min-width: 400px;
+  right: 10px;
+  top: 5px;
+  width: 48%;
 }
 
 #compile {
   position: absolute;
-
-  left: 26%;
-  top: 60%;
-  width: 24%;
-  height: 48%;
+  right: 10px;
+  left: 10px;
+  min-height: 100px;
+  min-width: 400px;
+  /*width: 100%;*/
+  height: 40%;
+  bottom: 0px;
 }
 
-#right {
-  width: 50%;
-  height: 100%;
-  float:left;
-  /* background-color: #417fbc; */
+#launch-button {
+  position: absolute;
+  right: 0px;
 }
-
-/* #chatgpt {
-  position: relative;
-  /* min-height: 350px;
-  min-width: 400px; */
-  /* width: 90%;
-  height: 60%;
-  margin-top: 15px;
-  margin-left: 20px;
-  background-color: blueviolet;}  */
-
-
-
-
-/* #chat-container{
-  width: 90%;
-  background-color: darkgray;
-  margin-left: 20px;
-} */
-
-/* #message-input{
-  width: 80%;
-  border: 1px solid #777;
-  border-radius: 20px;
-  height: 25px;  
-  padding: 5px;
-}
-
-#sendButton{
-  width: 15%;
-  border: 1px solid #777;
-  border-radius: 20px;
-  height: 25px;
-}
-
-#sendButton:hover{
-  background-color: #777;
-  color:#f1f1f1;
-  cursor: pointer;
-} */
-
-
 
 .head-section {
   position: absolute;
   top: 0px;
-  font-weight: bold;
+  font-weight:bold;
 }
 
 #title-code {
@@ -134,18 +69,17 @@ form{
   left: 5px;
 }
 
-/* #title-result {
+#title-result {
   position: absolute;
   left: 5px;
 }
 
-#title-compile {
+#title-compile{
   position: absolute;
   left: 5px;
-} */
+}
 
-#text-code,
-#text-code-ace {
+#text-code, #text-code-ace {
   position: absolute;
   top: 50px;
   width: 100%;
@@ -166,205 +100,12 @@ form{
 
 #text-compile {
   position: absolute;
-  top: 50px;
+  bottom: 0px;
+  left: 5px;
   width: 98%;
   height: 80%;
 }
 
-#title-chatgpt {
-  position: absolute;
-  left: 5px;
-}
-
 .hidden {
   display: none;
-}
-
-
-
-/*NAVIGATION BAR*/
-header{
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-.navbar {
-  background-color: #003060;
-  height: 12vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.logoheader {
-  width: 60%;
-  float: left;
-  margin:0;
-}
-
-.logoheader img {
-  height: 10vh;
-  margin-right: 5px;
-}
-
-
-/*Edit Buttons - 'revert to original' & 'save' */
-.editButtons{
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
- padding-right: 20px;
-}
-
-#original,#saveButton{
-  padding: 10px;
-  border-radius: 20px;
-  font-size: 15px;
-  float: right;
-}
-#original{
-  margin-left: 10px;
-  border: 2px solid #2c649b;
-  color:#2c649b;
-}
-
-#saveButton{
-  margin-left: 10px;
-  border: 2px solid rgb(4, 66, 4);
-  color: rgb(4, 66, 4);
-}
-
-#original:hover{
-  background-color: #2c649b;
-  color: #f1f1f1;
-  cursor: pointer;
-}
-
-#saveButton:hover{
-  background-color: rgb(4, 66, 4);
-  color: #f1f1f1;
-  cursor: pointer;
-}
-
-
-
-/* CHATGPT SECTION */
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  max-height: 80vh;
-  min-height: 60%;
-  max-width: 900px;
-  margin-top: 20px;
-  margin-left:10px;
-  width: 90%;
-  padding: 10px;
-  background-color: hsla(237, 26%, 39%, 0.6);
-  backdrop-filter: blur(1px);
-  border: 0.25px solid hsla(235, 30%, 20%, 0.4);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.chat-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-}
-
-.chat-box {
-  flex-grow: 1;
-  width: 100%;
-  min-height: 300px;
-  margin-bottom: 10px;
-  overflow-y: auto;
-}
-
-.input-form {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-}
-
-.input {
-  flex-grow: 1;
-  min-width: 70px;
-  border-radius: 5px;
-  margin-left: 5px;
-  padding: 10px;
-  border: 0px;
-  background-color: hsl(235, 20%, 15%);
-  color: hsl(240, 25%, 75%);
-  transition: box-shadow 0.2s ease-in-out;
-}
-
-.input:focus {
-  outline: none;
-  box-shadow: inset 0px 0px 12px 0px hsla(235, 20%, 10%, 0.98);
-}
-
-.heading {
-  text-align: left;
-  margin-left: 5px;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  background-clip: text;
-  background: hsl(234, 32%, 20%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.button {
-  background-color: hsl(235, 55%, 45%);
-  color: hsl(235, 75%, 85%);
-
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin-left: 10px;
-  margin-right: 5px;
-  cursor: pointer;
-  transition: background-color 0.16s ease-in;
-}
-
-.button:hover {
-  background-color: hsl(235, 50%, 35%);
-}
-
-.message {
-  display: inline-block;
-  max-width: 70%;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 10px;
-  overflow-wrap: break-word;
-  overflow-x: auto;
-  white-space: pre-wrap;
-}
-
-.message li {
-  white-space: normal;
-}
-
-.message code {
-  border-radius: 8px;
-}
-
-.user-message {
-  background-color: hsl(235, 55%, 45%);
-  color: hsl(240, 76%, 90%);
-  float: right;
-  clear: both;
-}
-
-.assistant-message {
-  background-color: hsl(235, 23%, 65%);
-  color: hsl(240, 30%, 25%);
-  float: left;
-  clear: both;
-}
-
-.message * {
-  margin: 0px;
 }
