@@ -2,10 +2,11 @@
 chatgpt query
 '''
 
-def chatgpt(query):
-    import openai
+import openai
 
-    openai.api_key = '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'
+def chatgpt(query):
+
+    openai.api_key = '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'
     messages = [ {"role": "system", "content": 
                 "You are a intelligent assistant."} ]
 
@@ -13,7 +14,7 @@ def chatgpt(query):
     # messages.append({"role": "system", "content": "Give suggestions without directly writing any code"})
     if query:
         messages.append(
-            {"role": "user", "content": query},
+            {"role": "user", "content": query}
         )
         chat = openai.ChatCompletion.create(
             model="gpt-3.5-turbo", messages=messages

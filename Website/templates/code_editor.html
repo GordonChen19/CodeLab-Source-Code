@@ -18,7 +18,6 @@
           </a>
         </div>
         <div class="editButtons">
-          <button id="original">Revert to Original</button>
           <button id="saveButton">Save</button>
         </div>
       </nav>
@@ -28,14 +27,15 @@
       <div id="left">
         <!-- ************  CODING ZONE  ************ -->
         <div id="code">
-          <form method="post,code" action="{{ target }}">
-            <div id="title-code" class="head-section">Source Code</div>
-
+          <form method="POST" action="{{ target }}">
+            <h1 class="heading"id="title-code">Source Code</h1>
+    
             <input
-              id="launch-button"
-              class="head-section"
-              type="submit"
-              value="Launch"
+            id="launch-button"
+            class="head-section"
+            type="submit"
+            value="run"
+            name="launch-button"
             />
 
             <textarea
@@ -65,21 +65,38 @@
           >
         </div> -->
       </div>
+
       <div id="right">
-        <div id="chatgpt">
+        <!-- <div id="chatgpt">
           <div id="title-chatgpt" class="head-section">ChatGPT</div>
           <textarea id="text-result" >
             {{ chatgpt }}</textarea
           >
-        </div>
+        </div> -->
         <!-- CHAT BOX -->
-        <div id="chat-container">
+        <!-- <div id="chat-container">
           <form id="message-form" action="">
               <input id="message-input" type="text" autocomplete="off" />
               <button type="submit" id="sendButton">Send</button>
           </form>
+        </div> -->
+
+        <div class="chat-container">
+          <h1 class="heading">Seek GPT</h1>
+          <div class="chat-wrapper">
+            <div id="chat-messages" class="chat-box"></div>
+            <form id="chat-form" class="input-form">
+              <textarea
+              type="text"
+              class="input"
+              id="user-input"
+              name="user_input"
+              placeholder="Type your message..."></textarea>
+              <button class="button" type="submit" id="submitBtn">Send</button>
+            </form>
+          </div>
         </div>
-      </div>
+      
     </div>
     
     <!-- <div id="result">
@@ -118,6 +135,7 @@
         .addEventListener("click", function () {
           editorElement.innerHTML = editor.getValue();
         });
+      
     </script>
   </body>
 </html>

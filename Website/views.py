@@ -4,7 +4,7 @@ from .models import *
 import json
 import sqlite3 as sql
 from . import runcode
-from . import chatgpt
+from .chatgpt import chatgpt
 conn=sql.connect('database.db')
 c=conn.cursor()
 
@@ -39,8 +39,8 @@ def view_invitations():
         if RoomByName:
             flash('Room Name already exists.', category='error')
         else:
-            introduction=chatgpt("Explain"+str(concept_name)+"with the aid of code written in"+room_language)
-            question=chatgpt("Ask a question about" + str(concept_name) + "that requires me to write code, begin with Question")
+            introduction=chatgpt("Explain"+str(concept_name)+"with the aid of code written in"+str(room_language)+". Begin with explanation")
+            question=chatgpt("Ask a question about" + str(concept_name) + "that requires me to write code. Begin with Question")
             new_room=Room(room_name=room_name,
                           owner_id=current_user.id,
                           room_language=room_language,
@@ -48,6 +48,7 @@ def view_invitations():
                           data=language_code[room_language],
                           introduction=introduction,
                           question=question)
+            
             db.session.add(new_room)
             db.session.commit() 
 
@@ -112,21 +113,21 @@ default_cols = "60"
 def enter_room_python(room_id): 
     
     if(request.method=='POST'):
-        if 'run' in request.form:
+        print("executed")
+        if 'launch-button' in request.form:
             print("Executed")
             code = request.form['code'] #preserves indentation
+            print(code)
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
             if not resrun:
                 resrun = 'No result!'
-        elif 'save and exit' in request.form:
+        elif 'saveButton' in request.form:
             room=Room.query.filter_by(id=room_id).first()
             code=request.form['code']
             room.data=code
             db.session.commit()
             redirect(url_for('views.view_invitations'))
-        elif 'revert to default' in request.form:
-            code=default_python_code
         
     else:
         room=Room.query.filter_by(id=room_id).first()
