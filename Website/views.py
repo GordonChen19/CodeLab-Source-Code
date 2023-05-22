@@ -96,32 +96,30 @@ default_cols = "60"
 @views.route("/session/<room_id>/python",methods=['POST','GET'])
 @login_required
 def enter_room_python(room_id): 
-    print("reached this portion")
+    
     if(request.method=='POST'):
-        print("reached this portion")
-        button = request.form.get(button)
-        if button=='run': #run code
+        if 'run' in request.form:
+            print("Executed")
             code = request.form['code'] #preserves indentation
             print(code)
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
             if not resrun:
                 resrun = 'No result!'
-        elif button == 'save and exit':
+        elif 'save and exit' in request.form:
             room=Room.query.filter_by(id=room_id).first()
             code=request.form['code']
             room.data=code
             db.session.commit()
             redirect(url_for('views.view_invitations'))
-        elif button == 'revert to default': 
+        elif 'revert to default' in request.form:
             code=default_python_code
+        
+        
 
     else:
         room=Room.query.filter_by(id=room_id).first()
-        if(room.data == 'default'):
-            code = default_python_code
-        else:
-            code=room.data
+        code = default_python_code
         resrun = 'No result!'
         rescompil = 'No Compilation for Python'
         response=None 
