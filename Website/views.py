@@ -4,6 +4,7 @@ from .models import *
 import json
 import sqlite3 as sql
 from . import runcode
+from . import chatgpt
 conn=sql.connect('database.db')
 c=conn.cursor()
 
@@ -19,7 +20,7 @@ def home():
     return render_template("home.html",user=current_user)
 
 
-from main import *
+
 @views.route("/projects",methods=['GET','POST'])
 @login_required
 def view_invitations():
@@ -133,9 +134,9 @@ def enter_room_python(room_id):
         resrun = 'No result!'
         rescompil = 'No Compilation for Python'
 
-    room=Room.query.filter_by(id=room_id).first()
-    introduction=room.introduction
-    question=room.question
+    # room=Room.query.filter_by(id=room_id).first()
+    # introduction=room.introduction
+    # question=room.question
     
     
     return render_template('code_editor.html',
@@ -147,8 +148,8 @@ def enter_room_python(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
-                           introduction=introduction,
-                           question=question,
+                        #    introduction=introduction,
+                        #    question=question,
                             h_reference=f'/session/{room_id}/python')
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])

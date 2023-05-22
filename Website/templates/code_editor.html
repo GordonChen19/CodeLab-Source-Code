@@ -1,14 +1,5 @@
 {% block content%}
 
-<head>
-  <link rel="stylesheet" href="{{url_for("static",filename="css/login.css")}}">
-</head>
-
-<nav class="navbar">
-  <a style="text-decoration: none" class="logoheader" href="/">
-    <img src="{{url_for("static", filename="CodeLabLogo.png")}}">
-  </a>
-</nav>
 
 <html lang="fr">
   <head>
@@ -18,55 +9,79 @@
   </head>
 
   <body id="index" class="home">
+
+    <header>
+      <nav class="navbar">
+        <div class="logoheader">
+          <a href="/" id="home-page">
+            <img src="{{url_for("static", filename="CodeLabLogo.png")}}">
+          </a>
+        </div>
+        <div class="editButtons">
+          <button id="original">Revert to Original</button>
+          <button id="saveButton">Save</button>
+        </div>
+      </nav>
+    </header>
     
-    <div id="left">
-      <!-- ************  CODING ZONE  ************ -->
-      <div id="code">
-        <form method="POST" action="{{ target }}">
-          <div id="title-code" class="head-section">Source Code</div>
+    <div class="codeArea">
+      <div id="left">
+        <!-- ************  CODING ZONE  ************ -->
+        <div id="code">
+          <form method="post,code" action="{{ target }}">
+            <div id="title-code" class="head-section">Source Code</div>
 
-          <input
-            id="launch-button"
-            class="head-section"
-            type="submit"
-            value="run"
-          />
+            <input
+              id="launch-button"
+              class="head-section"
+              type="submit"
+              value="Launch"
+            />
 
-          <textarea
-            id="text-code"
-            name="code"
-            rows="{{ rows }}"
-            cols="{{ cols }}"
+            <textarea
+              id="text-code"
+              name="code"
+              rows="{{ rows }}"
+              cols="{{ cols }}"
+            >
+            {{ code }}
+            </textarea
+            >
+            <div id="text-code-ace" class="hidden">{{ code }}</div>
+          </form>
+        </div>
+        <!-- ************ RUNNING ZONE RESULTS ************ -->
+        <!-- <div id="result">
+          <div id="title-result" class="head-section">Output result</div>
+          <textarea id="text-result" rows="10" cols="70" readonly>
+              {{ resrun }}</textarea
           >
-           {{ code }}
-           </textarea
+        </div> -->
+        <!-- ************ COMPILATION RESULTS ZONE ************ -->
+        <!-- <div id="compile">
+          <div id="title-compile" class="head-section">Compilation / Output</div>
+          <textarea id="text-compile" rows="10" cols="70" readonly>
+            {{ rescomp }}</textarea
           >
-          <div id="text-code-ace" class="hidden">{{ code }}</div>
-        </form>
+        </div> -->
       </div>
-      <!-- ************ RUNNING ZONE RESULTS ************ -->
-      <div id="result">
-        <div id="title-result" class="head-section">Output result</div>
-        <textarea id="text-result" rows="10" cols="70" readonly>
-            {{ resrun }}</textarea
-        >
-      </div>
-      <!-- ************ COMPILATION RESULTS ZONE ************ -->
-      <div id="compile">
-        <div id="title-compile" class="head-section">Compilation / Output</div>
-        <textarea id="text-compile" rows="10" cols="70" readonly>
-          {{ rescomp }}</textarea
-        >
+      <div id="right">
+        <div id="chatgpt">
+          <div id="title-chatgpt" class="head-section">ChatGPT</div>
+          <textarea id="text-result" >
+            {{ chatgpt }}</textarea
+          >
+        </div>
+        <!-- CHAT BOX -->
+        <div id="chat-container">
+          <form id="message-form" action="">
+              <input id="message-input" type="text" autocomplete="off" />
+              <button type="submit" id="sendButton">Send</button>
+          </form>
+        </div>
       </div>
     </div>
-    <div id="right">
-      <div id="chatgpt">
-        <div id="title-chatgpt" class="head-section">ChatGPT</div>
-        <textarea id="text-result" rows="10" cols="70">
-          {{ chatgpt }}</textarea
-        >
-      </div>
-    </div>
+    
     <!-- <div id="result">
         <div id="title-result" class="head-section">Output result</div>
         <textarea id="text-result" rows="18" cols="70" readonly>

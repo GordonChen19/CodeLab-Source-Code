@@ -1,5 +1,5 @@
 body {
-  background: #333333;
+  background: #e5e4df;
   color: #000305;
   font-size: 87.5%;
   /* Base font size: 14px */
@@ -8,20 +8,25 @@ body {
   line-height: 1.429;
   margin: 0;
   padding: 0;
-  text-align: left;
+
 }
 
-li {
-  display: inline;
+
+.codeArea{
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+/* LEFT DIV */
 
 #left {
-  position: absolute;
-  top: 5%;
+  width: 50%;
   /* min-height: 600px;
   min-width: 900px; */
-  width: 98%;
+  float:left;
   height: 100%;
+  background-color: brown;
 }
 
 #code {
@@ -29,9 +34,10 @@ li {
   /* min-height: 350px;
   min-width: 400px; */
   left: 1%;
-  top: 10%;
+  top: 15%;
   width: 48%;
-  height: 48%;
+  height: 60%;
+  background-color: blueviolet;
 }
 
 #result {
@@ -57,30 +63,74 @@ li {
 }
 
 #right {
-  position: absolute;
-  left: 51%;
-  top: 5%;
+  width: 50%;
   /* min-height: 600px;
   min-width: 900px; */
-  width: 48%;
-  height: 111%;
+  height: 100%;
+  float:left;
+  background-color: #417fbc;
 }
 
 #chatgpt {
   position: absolute;
   /* min-height: 350px;
     min-width: 200px; */
-  left: 1%;
-  top: 9%;
-  width: 100%;
-  height: 100%;
+  right: 1%;
+  top: 15%;
+  width: 48%;
+  height: 60%;
   /* box-sizing: border-box; */
 }
 
+#chat-container{
+  position: absolute;
+  /* min-height: 350px;
+    min-width: 200px; */
+  right: 1%;
+  top: 75%;
+  width: 48%;
+  height: 60%;
+}
+
+#message-input{
+  width: 80%;
+  border: 1px solid #777;
+  border-radius: 20px;
+  height: 25px;  
+  padding: 5px;
+}
+
+#sendButton{
+  width: 15%;
+  border: 1px solid #777;
+  border-radius: 20px;
+  height: 25px;
+}
+
+#sendButton:hover{
+  background-color: #777;
+  color:#f1f1f1;
+  cursor: pointer;
+}
+
+
+
 #launch-button {
   position: absolute;
-  right: 0px;
+  right: 0px; 
+  border: 1px solid rgb(4, 66, 4);
+  color: rgb(4, 66, 4);
+  border-radius: 20px;
+  height: 30px;
 }
+
+
+#launch-button:hover{
+  background-color: rgb(4, 66, 4);
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
 
 .head-section {
   position: absolute;
@@ -139,24 +189,69 @@ li {
   display: none;
 }
 
+
+
+/*NAVIGATION BAR*/
+header{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 .navbar {
   background-color: #003060;
   height: 12vh;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
 .logoheader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  margin-left: 30px;
+  width: 60%;
+  float: left;
+  margin:0;
 }
 
 .logoheader img {
   height: 10vh;
   margin-right: 5px;
+}
+
+
+/*Edit Buttons - 'revert to original' & 'save' */
+.editButtons{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+ padding-right: 20px;
+}
+
+#original,#saveButton{
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 15px;
+  float: right;
+}
+#original{
+  margin-left: 10px;
+  border: 2px solid #2c649b;
+  color:#2c649b;
+}
+
+#saveButton{
+  margin-left: 10px;
+  border: 2px solid rgb(4, 66, 4);
+  color: rgb(4, 66, 4);
+}
+
+#original:hover{
+  background-color: #2c649b;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+#saveButton:hover{
+  background-color: rgb(4, 66, 4);
+  color: #f1f1f1;
+  cursor: pointer;
 }

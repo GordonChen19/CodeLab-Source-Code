@@ -15,7 +15,7 @@ class Room(db.Model):
     data=db.Column(db.String)
     owner_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
     room_concept=db.Column(db.String(50),nullable=False)
-    introduction=db.Column(db.String(5000),
-    question=db.Column(db.String(5000)))
+    introduction=db.Column(db.String(5000)),
+    question=db.Column(db.String(5000))
     
     
