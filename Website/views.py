@@ -135,6 +135,7 @@ def enter_room_python(room_id):
             redirect(url_for('views.view_invitations'))
         
     else:
+        print("else statement")
         room=Room.query.filter_by(id=room_id).first()
         code = room.data
         print("code in else")

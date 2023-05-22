@@ -33,7 +33,7 @@
             id="launch-button"
             class="head-section"
             type="submit"
-            value="run"
+            value="Launch"
             name='launch-button'
             onClick="output()"
             />
@@ -136,7 +136,8 @@
         });
       
       function output(){
-        alert("output:{{ resrun }}")
+        var resrun="{{resrun}}"
+        alert("output: "+resrun)
       }
     </script>
   </body>
