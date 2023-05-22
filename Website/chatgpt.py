@@ -4,9 +4,9 @@ chatgpt query
 
 import openai
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
+
+
 
 
 def chatgpt(query):
