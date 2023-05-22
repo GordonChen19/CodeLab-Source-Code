@@ -32,11 +32,13 @@ def view_invitations():
             flash('Please input a valid concept ',category='error')
         room_language=request.form.get('room_language')
         
-        RoomByName = Room.query.filter_by(room_name=room_name).first()
+        RoomByName = Room.query.filter_by(room_name=room_name,owner_id=current_user.id).first()
+        
         if RoomByName:
             flash('Room Name already exists.', category='error')
         else:
-            new_room=Room(room_name=room_name,owner_id=current_user.id,
+            new_room=Room(room_name=room_name,
+                          owner_id=current_user.id,
                           room_language=room_language,
                           room_concept=concept_name)
             db.session.add(new_room)
