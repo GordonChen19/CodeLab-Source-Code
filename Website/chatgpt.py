@@ -3,10 +3,13 @@ chatgpt query
 '''
 
 import openai
+import os
+
+MAPBOX_SECRET_KEY=os.getenv("MAPBOX_SECRET_KEY")
 
 def chatgpt(query):
 
-    openai.api_key = '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'
+    openai.api_key = '{}'
     messages = [ {"role": "system", "content": 
                 "You are a intelligent assistant."} ]
 

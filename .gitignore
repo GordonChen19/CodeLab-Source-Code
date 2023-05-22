@@ -1,5 +1,5 @@
 __pycache__/
 venv/
-database.db/
-
+*instance/database.db
+.env
 
