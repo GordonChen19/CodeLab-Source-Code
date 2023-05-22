@@ -34,7 +34,7 @@ def chatgpt(query):
                 "You are a intelligent assistant."} ]
 
     messages.append({"role": "system", "content": "You are a code assistant."})
-    messages.append({"role": "system", "content": "Give suggestions without directly writing any code"})
+    # messages.append({"role": "system", "content": "Give suggestions without directly writing any code"})
     if query:
         messages.append(
             {"role": "user", "content": query},
@@ -51,8 +51,9 @@ def chatgpt(query):
 web Socket
 '''
 
-from Website.models import Chats
+from Website.models import Chats,Room
 from Website import db
+
 
 @socketio.on('send_message')
 def handle_message(message):
@@ -60,6 +61,9 @@ def handle_message(message):
 
     generated_response=chatgpt(user_message)
     
+    room_id=message['room_id']
+    room=Room.query.filter_by(id=room_id).first()
+    concept=room.room_concept
     new_chat=Chats(query=user_message,response=generated_response,room_id=message['room_id'])
     db.session.add(new_chat)
     db.session.commit()

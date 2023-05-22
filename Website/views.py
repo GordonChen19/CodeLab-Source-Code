@@ -19,7 +19,7 @@ def home():
     return render_template("home.html",user=current_user)
 
 
-
+from main import *
 @views.route("/projects",methods=['GET','POST'])
 @login_required
 def view_invitations():
@@ -34,13 +34,19 @@ def view_invitations():
         
         RoomByName = Room.query.filter_by(room_name=room_name,owner_id=current_user.id).first()
         
+        language_code={'python':default_python_code,'C':default_c_code,'Cpp':default_cpp_code}
         if RoomByName:
             flash('Room Name already exists.', category='error')
         else:
+            introduction=chatgpt("Explain"+str(concept_name)+"with the aid of code written in"+room_language)
+            question=chatgpt("Ask a question about" + str(concept_name) + "that requires me to write code, begin with Question")
             new_room=Room(room_name=room_name,
                           owner_id=current_user.id,
                           room_language=room_language,
-                          room_concept=concept_name)
+                          room_concept=concept_name,
+                          data=language_code[room_language],
+                          introduction=introduction,
+                          question=question)
             db.session.add(new_room)
             db.session.commit() 
 
@@ -108,7 +114,6 @@ def enter_room_python(room_id):
         if 'run' in request.form:
             print("Executed")
             code = request.form['code'] #preserves indentation
-            print(code)
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
             if not resrun:
@@ -122,22 +127,16 @@ def enter_room_python(room_id):
         elif 'revert to default' in request.form:
             code=default_python_code
         
-        
-
     else:
         room=Room.query.filter_by(id=room_id).first()
-        code = default_python_code
+        code = room.data
         resrun = 'No result!'
         rescompil = 'No Compilation for Python'
-        response=None 
-        
-    # rendering chat history
-    # conversation=Chats.query.filter_by(room_id=room_id).all()
-    conversationRecord=[]
-    # if conversation is not None:
-    #     for c in conversation:
-    #         conversationRecord.append([c.query,c.response])
-        
+
+    room=Room.query.filter_by(id=room_id).first()
+    introduction=room.introduction
+    question=room.question
+    
     
     return render_template('code_editor.html',
                            user=current_user,
@@ -148,7 +147,8 @@ def enter_room_python(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
-                           conversation=conversationRecord,
+                           introduction=introduction,
+                           question=question,
                             h_reference=f'/session/{room_id}/python')
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])

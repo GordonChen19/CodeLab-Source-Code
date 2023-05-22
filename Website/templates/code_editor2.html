@@ -1,0 +1,144 @@
+{% block content%}
+  <head>
+    <title>WebDevTools</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/static/css/editor.css" />
+  </head>
+
+  <body>
+    
+    <header>
+      <nav class="navbar">
+        <a  class="logoheader" href="/">
+          <img src="{{url_for("static", filename="CodeLabLogo.png")}}">
+        </a>
+      </nav>
+    </header>
+
+    <!-- EDIT BUTTONS -->
+    <div class="editButtons">
+      <div class="childDiv">
+        <button id="original">Revert to Original</button>
+      </div>
+      <div class="childDiv">
+        <button id="saveButton">Save and Exit</button>
+      </div>
+    </div>
+
+
+    <div class="codeArea">
+      <!-- LEFT DIV -->
+      <div class="left-div">
+        <!-- ************  CODING ZONE  ************ -->
+        <div id="code">
+          <form method="POST" action="{{ target }}">
+            <label id="title-code" class="head-section">Source Code</label>
+
+            <input
+              id="launch-button"
+              class="head-section"
+              type="submit"
+              value="run"
+            />
+
+            <textarea
+              id="text-code"
+              name="code"
+              rows="{{ rows }}"
+              cols="{{ cols }}"
+            >
+            {{ code }}
+            </textarea
+            >
+            <div id="text-code-ace" class="hidden">{{ code }}</div>
+          </form>
+        </div>
+        <!-- ************ RUNNING ZONE RESULTS ************ -->
+        <div id="result">
+          <div id="title-result" class="head-section">Output result</div>
+          <textarea id="text-result" rows="10" cols="70" readonly>
+              {{ resrun }}</textarea
+          >
+        </div>
+        <!-- ************ COMPILATION RESULTS ZONE ************ -->
+        <div id="compile">
+          <div id="title-compile" class="head-section">Compilation / Output</div>
+          <textarea id="text-compile" rows="10" cols="70" readonly>
+            {{ rescomp }}</textarea
+          >
+        </div>
+      </div>
+
+      <!-- RIGHT DIV -->
+      <div class="right-div">
+        <!-- CHAT GPT -->
+        <div id="chatgpt">
+          <label id="title-chatgpt" class="head-section">ChatGPT</label>
+          <textarea id="text-result" rows="10" cols="70">
+            {{ chatgpt }}</textarea
+          >
+        </div>
+
+        <!-- CHAT BOX -->
+        <div id="chat-container">
+          <form id="message-form" action="">
+              <input id="message-input" type="text" autocomplete="off" />
+              <button type="submit" id="sendButton">Send</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    
+
+    <script src="{{ url_for('static', filename='ace/ace.js') }}"></script>
+    <script>
+      // The Ace editor needs divs instead of textareas
+      // So we hide the textarea and show a div instead
+      var editorElement = document.getElementById("text-code");
+      editorElement.classList.add("hidden");
+      document.getElementById("text-code-ace").classList.remove("hidden");
+
+      // Set up the editor
+      var editor = ace.edit("text-code-ace");
+      editor.setTheme("ace/theme/tomorrow");
+      var language = "{{ target }}" === "runpy" ? "python" : "c_cpp";
+      editor.getSession().setMode("ace/mode/" + language);
+
+      // Make sure we copy the content of the editor to the textarea before posting
+      // its content to the server
+      document
+        .getElementById("launch-button")
+        .addEventListener("click", function () {
+          editorElement.innerHTML = editor.getValue();
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        // Listen for 'receive_message' event and update the chat interface
+        socket.on('receive_message', function(message) {
+            var messageList = document.getElementById('message-list');
+            var listItem = document.createElement('li');
+            listItem.textContent = message['content'];
+            messageList.appendChild(listItem);
+        });
+
+        // Send message when the form is submitted
+        var form = document.getElementById('message-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var input = document.getElementById('message-input');
+            var message = { 'content': input.value };
+            socket.emit('send_message', message);
+            input.value = '';
+        });
+    </script>
+    
+  </body>
+
+
+{% endblock %}

@@ -15,11 +15,7 @@ class Room(db.Model):
     data=db.Column(db.String)
     owner_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
     room_concept=db.Column(db.String(50),nullable=False)
-    
-class Chats(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-    query=db.Column(db.String(1000),index=True)
-    response=db.Column(db.String(1000),index=True)
-    room_id=db.Column(db.Integer,db.ForeignKey('room.id'),nullable=False)
+    introduction=db.Column(db.String(5000),
+    question=db.Column(db.String(5000)))
     
     
