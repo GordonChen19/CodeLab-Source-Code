@@ -1,37 +1,32 @@
 body {
   background: #ffffff;
   color: #000305;
-  font-size: 87.5%;
-  /* Base font size: 14px */
-  font-family: "Trebuchet MS", Trebuchet, "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-size: 87.5%; /* Base font size: 14px */
+  font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   line-height: 1.429;
   margin: 0;
   padding: 0;
-
+  text-align: left;
 }
 
+li {
+  display: inline;
+}
 
-.codeArea{
+#content {
+  position: absolute;
+  top: 50px;
+  min-height: 600px;
+  min-width: 900px;
   width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* LEFT DIV */
-
-#left {
-  width: 50%;
-  float:left;
-  height: 100%;
-  /* background-color: brown; */
+  height: 90%;
 }
 
 #code {
   position: relative;
   width: 50%;
   min-height: 70%;
-  margin-top: 20px;
+  margin-top: 5%;
   margin-left: 20px;
   /* background-color: blueviolet; */
 }
@@ -55,78 +50,36 @@ form{
   cursor: pointer;
 }
 
-
-
 #result {
   position: absolute;
-  left: 1%;
-  top: 60%;
-  width: 24%;
-  height: 48%;
+  height: 60%;
+  min-height: 350px;
+  min-width: 400px;
+  right: 10px;
+  top: 5px;
+  width: 48%;
 }
 
 #compile {
   position: absolute;
-
-  left: 26%;
-  top: 60%;
-  width: 24%;
-  height: 48%;
+  right: 10px;
+  left: 10px;
+  min-height: 100px;
+  min-width: 400px;
+  /*width: 100%;*/
+  height: 40%;
+  bottom: 0px;
 }
 
-#right {
-  width: 50%;
-  height: 100%;
-  float:left;
-  /* background-color: #417fbc; */
+#launch-button {
+  position: absolute;
+  right: 0px;
 }
-
-/* #chatgpt {
-  position: relative;
-  /* min-height: 350px;
-  min-width: 400px; */
-  /* width: 90%;
-  height: 60%;
-  margin-top: 15px;
-  margin-left: 20px;
-  background-color: blueviolet;}  */
-
-
-
-
-/* #chat-container{
-  width: 90%;
-  background-color: darkgray;
-  margin-left: 20px;
-} */
-
-/* #message-input{
-  width: 80%;
-  border: 1px solid #777;
-  border-radius: 20px;
-  height: 25px;  
-  padding: 5px;
-}
-
-#sendButton{
-  width: 15%;
-  border: 1px solid #777;
-  border-radius: 20px;
-  height: 25px;
-}
-
-#sendButton:hover{
-  background-color: #777;
-  color:#f1f1f1;
-  cursor: pointer;
-} */
-
-
 
 .head-section {
   position: absolute;
   top: 0px;
-  font-weight: bold;
+  font-weight:bold;
 }
 
 #title-code {
@@ -134,18 +87,17 @@ form{
   left: 5px;
 }
 
-/* #title-result {
+#title-result {
   position: absolute;
   left: 5px;
 }
 
-#title-compile {
+#title-compile{
   position: absolute;
   left: 5px;
-} */
+}
 
-#text-code,
-#text-code-ace {
+#text-code, #text-code-ace {
   position: absolute;
   top: 50px;
   width: 100%;
@@ -166,14 +118,10 @@ form{
 
 #text-compile {
   position: absolute;
-  top: 50px;
+  bottom: 0px;
+  left: 5px;
   width: 98%;
   height: 80%;
-}
-
-#title-chatgpt {
-  position: absolute;
-  left: 5px;
 }
 
 .hidden {

@@ -1,16 +1,14 @@
 {% block content%}
 
-  <head>
-    <link rel="stylesheet" href="{{url_for("static",filename="css/login.css")}}">
-  </head>
-  
-  <nav class="navbar">
-    <a style="text-decoration: none" class="logoheader" href="/">
-      <img src="{{url_for("static", filename="CodeLabLogo.png")}}">
-    </a>
-  </nav>
+<head>
+  <link rel="stylesheet" href="{{url_for("static",filename="css/login.css")}}">
+</head>
 
-
+<nav class="navbar">
+  <a style="text-decoration: none" class="logoheader" href="/">
+    <img src="{{url_for("static", filename="CodeLabLogo.png")}}">
+  </a>
+</nav>
 
 <html lang="fr">
     <head>
@@ -42,29 +40,24 @@
                         </textarea><br/>
                     <div id="text-code-ace" class="hidden">{{ code }}</div>
 
-                </form>
-            </div>
-            
-        
-            
+        </form>
+    </div>
+    
 
-        
+</div>
+<script src="{{ url_for('static', filename='ace/ace.js') }}"></script>
+<script>
+    // The Ace editor needs divs instead of textareas
+    // So we hide the textarea and show a div instead
+    var editorElement = document.getElementById("text-code");
+    editorElement.classList.add("hidden");
+    document.getElementById("text-code-ace").classList.remove("hidden");
 
-        <script src="{{ url_for('static', filename='ace/ace.js') }}"></script>
-        <script>
-            
-
-            // The Ace editor needs divs instead of textareas
-            // So we hide the textarea and show a div instead
-            var editorElement = document.getElementById("text-code");
-            editorElement.classList.add("hidden");
-            document.getElementById("text-code-ace").classList.remove("hidden");
-
-            // Set up the editor
-            var editor = ace.edit("text-code-ace");
-            editor.setTheme("ace/theme/tomorrow");
-            var language = ("{{ target }}" === "runpy") ? "python" : "c_cpp";
-            editor.getSession().setMode("ace/mode/" + language);
+    // Set up the editor
+    var editor = ace.edit("text-code-ace");
+    editor.setTheme("ace/theme/tomorrow");
+    var language = ("{{ target }}" === "runpy") ? "python" : "c_cpp";
+    editor.getSession().setMode("ace/mode/" + language);
 
             // Make sure we copy the content of the editor to the textarea before posting
             // its content to the server
@@ -76,5 +69,6 @@
         </script>
     </body>
 </html>
+
 
 {% endblock %}
