@@ -25,15 +25,20 @@ def home():
 def view_invitations():
     if request.method=='POST': #newroom
         room_name=request.form.get('room_name')
+        concept_name=request.form.get('concept_name')
         if len(room_name)==0:
             flash('Please input a name for the room',category='error')
+        if len(concept_name)==0:
+            flash('Please input a valid concept ',category='error')
         room_language=request.form.get('room_language')
         
         RoomByName = Room.query.filter_by(room_name=room_name).first()
         if RoomByName:
             flash('Room Name already exists.', category='error')
         else:
-            new_room=Room(room_name=room_name,owner_id=current_user.id,room_language=room_language)
+            new_room=Room(room_name=room_name,owner_id=current_user.id,
+                          room_language=room_language,
+                          room_concept=concept_name)
             db.session.add(new_room)
             db.session.commit() 
 

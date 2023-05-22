@@ -4,7 +4,6 @@ from sqlalchemy.sql import func
 
 class User(db.Model,UserMixin):
     id=db.Column(db.Integer,primary_key=True)
-    username=db.Column(db.String(150),unique=True)
     email=db.Column(db.String(150),unique=True)
     password=db.Column(db.String(150))
     first_name=db.Column(db.String(150))
@@ -15,6 +14,7 @@ class Room(db.Model):
     room_language = db.Column(db.String(120), nullable=False)
     data=db.Column(db.String)
     owner_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
+    room_concept=db.Column(db.String(50),nullable=False)
     
 class Chats(db.Model):
     id=db.Column(db.Integer,primary_key=True)
