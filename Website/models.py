@@ -13,7 +13,7 @@ class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     room_name = db.Column(db.String(120), unique=True, nullable=False)
     room_language = db.Column(db.String(120), nullable=False)
-    data=db.Column(db.String,default="default")
+    data=db.Column(db.String)
     owner_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
     
 class Chats(db.Model):
