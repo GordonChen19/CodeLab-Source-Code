@@ -1,5 +1,5 @@
 body {
-  background: #e5e4df;
+  background: #ffffff;
   color: #000305;
   font-size: 87.5%;
   /* Base font size: 14px */
@@ -29,7 +29,7 @@ body {
 
 #code {
   position: relative;
-  width: 90%;
+  width: 50%;
   min-height: 70%;
   margin-top: 20px;
   margin-left: 20px;
@@ -41,7 +41,7 @@ form{
 }
 
 #launch-button { 
-  border: 1px solid rgb(4, 66, 4);
+  border: 1px solid rgba(4, 66, 4, 0);
   color: rgb(4, 66, 4);
   border-radius: 20px;
   height: 30px;
@@ -154,7 +154,7 @@ form{
 
 #text-code-ace {
   padding: 2px;
-  border: 1px solid rgb(169, 169, 169);
+  border: 1px solid rgba(169, 169, 169, 0);
 }
 
 #text-result {
@@ -188,25 +188,28 @@ header{
   margin: 0;
   padding: 0;
 }
+
 .navbar {
   background-color: #003060;
   height: 12vh;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .logoheader {
-  width: 60%;
-  float: left;
-  margin:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin-left: 30px;
 }
 
 .logoheader img {
   height: 10vh;
   margin-right: 5px;
 }
-
 
 /*Edit Buttons - 'revert to original' & 'save' */
 .editButtons{

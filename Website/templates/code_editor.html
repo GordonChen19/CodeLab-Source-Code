@@ -29,12 +29,13 @@
         <div id="content">
             <!-- ************  CODING ZONE  ************ -->
             <div id="code">
-                <form method="post,code" action="{{ target }}">
+                <form method="POST" action="{{ target }}">
                     <div id="title-code" class="head-section">
                     Source Code
                     </div>
 
-                    <input id="launch-button" class="head-section" type="submit" value="Launch" />
+                    <input id="launch-button" class="head-section" type="submit" value="Launch" name='launch-button'   />
+
 
                     <textarea id="text-code" name="code" rows={{ rows }} cols={{ cols }}>
                         {{ code }}
@@ -70,7 +71,8 @@
             document.getElementById("launch-button").addEventListener("click", function () {
                 editorElement.innerHTML = editor.getValue();
             });
-
+           
+           
         </script>
     </body>
 </html>

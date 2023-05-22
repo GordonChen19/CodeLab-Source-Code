@@ -82,7 +82,9 @@ int main(int argc, char **argv)
 {
     printf("Hello C World!!\\n");
     return 0;
-}    
+}
+
+    
 """
 
 default_cpp_code = """
@@ -95,6 +97,8 @@ int main(int argc, char **argv)
     cout << "Hello C++ World" << endl;
     return 0;
 }
+
+
 """
 
 default_python_code = """
@@ -103,6 +107,8 @@ import os
 
 if __name__ == "__main__":
     print ("Hello Python World!!")
+    
+    
 """
 
 default_rows = "15"
@@ -116,20 +122,26 @@ default_cols = "60"
 def enter_room_python(room_id): 
     
     if(request.method=='POST'):
-        print("executed")
+        
         if 'launch-button' in request.form:
-            print("Executed")
+            
             code = request.form['code'] #preserves indentation
-            print(code)
+            index=code.find("Output")
+            code=code[:index]
+            
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
-            print(resrun)
-            # if resrun== '':
-            #     print("branchstatement")
-            #     resrun = 'No result!'
+            if resrun== '':
+                print("branchstatement")
+                resrun = 'No result!'
+            code = code + 'Output: ' + '\n' + resrun  + '\n' + 'Compilation: ' + '\n' + rescompil
+
+            
         elif 'saveButton' in request.form:
             room=Room.query.filter_by(id=room_id).first()
             code=request.form['code']
+            index=code.find("Output")
+            code=code[:index]
             room.data=code
             db.session.commit()
             redirect(url_for('views.view_invitations'))
