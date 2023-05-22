@@ -11,15 +11,29 @@
       <button type="button" class="collapsible">New Project</button>
       <div class="content">
         <form method="POST" id="roomID">
+          
           <div class="mb-3">
+            <label for="room_name" class="label1">Room Name</label><br>
             <input
               type="text"
               class="form-control"
               id="room_name"
               name="room_name"
-              placeholder="Room Name"
+              placeholder=""
             />
-          </div><br>
+          </div> 
+          <div class="mb-3">
+            <label for="concept_name" class="label1">What concept would you like to learn?</label><br>
+            <input
+              type="text"
+              class="form-control"
+              id="concept_name"
+              name="concept_name"
+              placeholder="e.g. union find"
+            />
+          </div>
+          
+          <br>
           <label for="room_language" id="languageID">Choose a Language:</label>
             <select id="room_language" name="room_language">
               <option value="python">Python</option>
@@ -36,8 +50,9 @@
       <div class="content">
         <table class="table table-striped-columns">
           <tr class="room-title">
-            <th>Room ID</th>
+            <th>Room Name</th>
             <th>Room Language</th>
+            <th>Concept</th>
             <th>Delete?</th>
           </tr>
           {% for room in room %}
@@ -48,6 +63,7 @@
               </a>
             </td>
             <td>{{room.room_language}}</td>
+            <td><!--concept--></td>
             <td>
               <button type="button" class="close" onClick="deleteRoom(`{{ room.id }}`)"> 
                 <span aria-hidden="true">Yes</span>
