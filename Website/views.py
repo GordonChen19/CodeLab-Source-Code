@@ -75,7 +75,8 @@ code editor navigation
 '''
 
 
-default_c_code = """#include <stdio.h>
+default_c_code = """
+#include <stdio.h>
 
 int main(int argc, char **argv)
 {
@@ -84,7 +85,8 @@ int main(int argc, char **argv)
 }    
 """
 
-default_cpp_code = """#include <iostream>
+default_cpp_code = """
+#include <iostream>
 
 using namespace std;
 
@@ -95,7 +97,8 @@ int main(int argc, char **argv)
 }
 """
 
-default_python_code = """import sys
+default_python_code = """
+import sys
 import os
 
 if __name__ == "__main__":
@@ -120,8 +123,10 @@ def enter_room_python(room_id):
             print(code)
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
-            if not resrun:
-                resrun = 'No result!'
+            print(resrun)
+            # if resrun== '':
+            #     print("branchstatement")
+            #     resrun = 'No result!'
         elif 'saveButton' in request.form:
             room=Room.query.filter_by(id=room_id).first()
             code=request.form['code']
@@ -132,8 +137,10 @@ def enter_room_python(room_id):
     else:
         room=Room.query.filter_by(id=room_id).first()
         code = room.data
-        resrun = 'No result!'
-        rescompil = 'No Compilation for Python'
+        print("code in else")
+        print(code)
+        run = runcode.RunPyCode(code)
+        rescompil, resrun = run.run_py_code()
 
     # room=Room.query.filter_by(id=room_id).first()
     # introduction=room.introduction

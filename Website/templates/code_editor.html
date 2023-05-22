@@ -27,17 +27,16 @@
       <div id="left">
         <!-- ************  CODING ZONE  ************ -->
         <div id="code">
-          <form method="POST" action="{{ target }}">
+          <form method="post" action="{{ target }}">
             <h1 class="heading"id="title-code">Source Code</h1>
-    
             <input
             id="launch-button"
             class="head-section"
             type="submit"
             value="run"
-            name="launch-button"
+            name='launch-button'
+            onClick="output()"
             />
-
             <textarea
               id="text-code"
               name="code"
@@ -136,6 +135,9 @@
           editorElement.innerHTML = editor.getValue();
         });
       
+      function output(){
+        alert("output:{{ resrun }}")
+      }
     </script>
   </body>
 </html>
