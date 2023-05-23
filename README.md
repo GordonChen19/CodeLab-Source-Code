@@ -69,9 +69,10 @@ git clone https://github.com/GordonChen19/CodeLab-Source-Code.git
 
 4. To access the website:
 ```
-git pull 
 python main.py
 ```
+
+
 
 <br>
 
