@@ -1,10 +1,5 @@
-                                                                        import sys
+import sys
 import os
 
-
-for i in range(5):
-    pass
-    
-
-
-                       
+if __name__ == "__main__":
+    print ("Hello Python World!!")
