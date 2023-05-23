@@ -7,7 +7,7 @@ Hi, we are SEEK, currently second-year students from Nanyang Technological Unive
 
 <br>
 
-## Our Team :sunglasses:
+## Our Team 
 1. Goh Chun Ren 
 <br> Github Handle: [Strirex](https://github.com/Strirex)
 <br> Email: gbdfaqw@gmail.com
@@ -102,7 +102,7 @@ The application will start running on "http://localhost:5000".
 **Projects Directory** <br>
 First, create a 'Room Name' and type in 'What concept you would like to learn'. You may select the following computing languages to learn: Python, C, C++. 
 
-![Projects Directory](Website/static/CodeLabProjectsDirectory.png)
+![Projects Directory](Website/static/CodeLabProjects.png)
 
 <br>
 
