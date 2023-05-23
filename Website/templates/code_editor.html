@@ -47,10 +47,11 @@
             
             
             
-            <div class="chat-container"style= "width:60%; min-height: 150px; background-color: rgb ;">
-                <h1 class="heading">Code GPT</h1>
+            <div class="chat-container"style= "width:60%; min-height: 100px; background-color: rgb ;">
+                <img src="{{url_for("static",filename="chatbot.png")}}" width="50" 
+                height="50" style="border-radius: 20px; border: 2px solid hsla(156, 27%, 47%, 0.6);"><br>
                 <div class="chat-wrapper" >
-                  <div id="chat-messages" class="chat-box" style=" min-height: 100px;"></div>
+                  <div id="chat-messages" class="chat-box" style=" min-height: 100px; white-space: pre-wrap;" >{{prompt}}</div>
                 </div>
             </div>
     
@@ -63,9 +64,10 @@
             
             <h3>{{ room_name }}</h3>
             <br></br>
-            <pre style="white-space: pre-line;">{{ introduction }}</pre>
+            <pre id="concept-intro1">{{ introduction }}</pre>
             <br></br>
-            <pre style="white-space: pre-line;">{{ question }}</pre>
+            <pre id="concept-intro2">{{ question }}</pre>
+            <br></br>
         </div>
 <script src="{{ url_for('static', filename='ace/ace.js') }}"></script>
 <script>
@@ -87,6 +89,42 @@
                 editorElement.innerHTML = editor.getValue();
             });
            
+            //typing effect///
+            const typingSpeed = 25; // Adjust typing speed (in milliseconds) here
+
+            let lineIndex = 0;
+            let charIndex = 0;
+            const typingTextElement = document.getElementById("chat-messages");
+            const lines = typingTextElement.innerText.split('\n');
+            typingTextElement.innerText = '';
+
+            function type() {
+            if (lineIndex < lines.length) {
+                const line = lines[lineIndex];
+                const lineLength = line.length;
+
+                if (charIndex < lineLength) {
+                typingTextElement.innerHTML += line.charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingSpeed);
+                } else {
+                lineIndex++;
+                charIndex = 0;
+                typingTextElement.innerHTML += "<br>";
+                setTimeout(type, typingSpeed);
+                }
+            }
+            }
+
+            function typeChatMessages() {
+            if (lines.length > 0) {
+                type();
+            }
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+            typeChatMessages();
+            });
            
         </script>
     </body>

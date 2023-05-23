@@ -16,13 +16,15 @@ def login():
         
         if user:
             if check_password_hash(user.password,password):
-                flash('Logged in successfully!',category='success')
+                # flash('Logged in successfully!',category='success')
                 login_user(user,remember=True)
                 return redirect(url_for('views.home'))
             else:
-                flash('Incorrect password, try again.', category='error')
+                # flash('Incorrect password, try again.', category='error')
+                pass
         else:
-            flash('Email does not exist.', category='error')
+            # flash('Email does not exist.', category='error')
+            pass
         # elif 'sign up button' in request.form:
         #     print("executed")
         #     email = request.form.get('email')
@@ -78,19 +80,19 @@ def sign_up():
 
         userByEmail = User.query.filter_by(email=email).first()
         if userByEmail:
-            flash('Email already exists.', category='error')
+            # flash('Email already exists.', category='error')
             print("error1")
         elif len(email) < 4:
-            flash('Email must be greater than 3 characters.', category='error')
+            # flash('Email must be greater than 3 characters.', category='error')
             print("error3")
         elif len(first_name) < 2:
-            flash('First name must be greater than 1 character.', category='error')
+            # flash('First name must be greater than 1 character.', category='error')
             print("error4")
         elif password1 != password2:
-            flash('Passwords don\'t match.', category='error')
+            # flash('Passwords don\'t match.', category='error')
             print("error5")
         elif len(password1) < 7:
-            flash('Password must be at least 7 characters.', category='error')
+            # flash('Password must be at least 7 characters.', category='error')
             print("error6")
         else:
             new_user = User(email=email, first_name=first_name, 

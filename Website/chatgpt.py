@@ -11,7 +11,7 @@ import os
 
 def chatgpt(query):
 
-    openai.api_key = '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'
+    openai.api_key = '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'
     messages = [ {"role": "system", "content": 
                 "You are a intelligent assistant."} ]
 
