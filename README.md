@@ -47,32 +47,53 @@ In our first two years of University, computing is a new venture for most of us.
 
 <br>
 
-## How to get started
-1. To begin, [set up Git and VSCode on your desktop](https://www.jcchouinard.com/install-git-in-vscode/) 
+## Get Started
+**Prerequisites**
+<br>
+Before you begin, make sure you have the following installed:
+- Python (version 3.6 or higher)
+- pip (package installer for Python)
+<br>
 
-2. Clone this repository into your working station, key in the following command in CMD(Windows) or Terminal(Mac or Linux). 
-
-For Windows/Mac, to save the repository content into a folder in Desktop:
-```
-cd Desktop
-```
-
-Followed by: 
+**Installation**
+1. Clone this repository  
 ```
 git clone https://github.com/GordonChen19/CodeLab-Source-Code.git
 ```
 
-3. In Visual Studios, create a virtual environment: 
+2. Navigate to the project directionary: 
 ```
-.\venv\Scripts\activate
+cd CodeLab-Source-Code
 ```
 
-4. To access the website:
+3. Create a virtual environment: 
+```
+python -m venv myenv
+```
+
+4. Activate the virtual environment: 
+- On macOS and Linux:
+```
+source myenv/bin/activate
+```
+
+- On Windows (Command Prompt):
+```
+myenv\Scripts\activate.bat
+```
+
+5. Install the dependencies: 
+```
+pip install -r requirements.txt
+```
+<br>
+
+**Usage**
+To run CODELAB, execute the following command: 
 ```
 python main.py
 ```
-
-
+The application will start running on "http://localhost:5000".
 
 <br>
 
@@ -85,11 +106,15 @@ First, create a 'Room Name' and type in 'What concept you would like to learn'. 
 <br>
 
 **Code Editor** <br>
-After creation of the room, you will be redirected to this page below. For instance, you are interested to learn the concept of <em>Union Find</em>. On the right, a description of <em>Union Find</em> will be given and a random question will be generated for students to answer on the IDE on the left of the screen. 
+After creation of the room, you will be redirected to this page below. For instance, you are interested to learn the concept of <em>Union Find</em>. On the right, a description of <em>Union Find</em> will be given and a random question will be generated for students to answer on the IDE on the top left of the screen. 
 <br>
+
+At the bottom left, our friendly Robo will help you out!
 - Click on 'hints' to get help on the question you are working on
 - Click on 'solution' to check your answer
-- Click on 'code review' to determine how to improve your answer    
+- Click on 'code review' to determine how to improve your answer
+
+![Code Editor](Website/static/CodeLabCodeEditor.png)
 
 <br>
 
