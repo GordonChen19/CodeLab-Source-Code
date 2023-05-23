@@ -125,6 +125,7 @@ def enter_room_python(room_id):
         code = request.form['code'] #preserves indentation
         index=code.find("Output")
         code=code[:index]
+        print(code)
         
         if 'launch-button' in request.form:
             run = runcode.RunPyCode(code)
@@ -148,6 +149,7 @@ def enter_room_python(room_id):
             room.last_pressed='hint'
             print("printing hint")
             print(room.hint)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_python',room_id=room_id))
         elif 'Solution' in request.form:
@@ -156,6 +158,7 @@ def enter_room_python(room_id):
             room=Room.query.filter_by(id=room_id).first()
             room.solution=chatgpt("give the solution code written in" + room.room_language + "to the" + room.question + " Begin with code:")
             room.last_pressed='solution'
+            room.data=code
             print("printing solution")
             print(room.solution)
             db.session.commit()
@@ -167,12 +170,15 @@ def enter_room_python(room_id):
             room.last_pressed='code_review'
             print("code_review")
             print(room.code_review)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_python',room_id=room_id))
         
     else:
         room=Room.query.filter_by(id=room_id).first()
         code = room.data
+        print(room.data)
+        print("printing room data")
         run = runcode.RunPyCode(code)
         rescompil, resrun = run.run_py_code()
 
@@ -228,6 +234,7 @@ def enter_room_C(room_id):
             room.last_pressed='hint'
             print("printing hint")
             print(room.hint)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_C',room_id=room_id))
         elif 'Solution' in request.form:
@@ -238,6 +245,7 @@ def enter_room_C(room_id):
             room.last_pressed='solution'
             print("printing solution")
             print(room.solution)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_C',room_id=room_id))
         elif 'Review Code' in request.form:
@@ -247,6 +255,7 @@ def enter_room_C(room_id):
             room.last_pressed='code_review'
             print("code_review")
             print(room.code_review)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_C',room_id=room_id))
     else:
@@ -306,6 +315,7 @@ def enter_room_Cpp(room_id):
             room.last_pressed='hint'
             print("printing hint")
             print(room.hint)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_Cpp',room_id=room_id))
         elif 'Solution' in request.form:
@@ -316,6 +326,7 @@ def enter_room_Cpp(room_id):
             room.last_pressed='solution'
             print("printing solution")
             print(room.solution)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_Cpp',room_id=room_id))
         elif 'Review Code' in request.form:
@@ -325,6 +336,7 @@ def enter_room_Cpp(room_id):
             room.last_pressed='code_review'
             print("code_review")
             print(room.code_review)
+            room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_Cpp',room_id=room_id))
     
