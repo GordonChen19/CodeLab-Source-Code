@@ -17,7 +17,7 @@
 body, input{
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-    color: var(--white-color);
+    color: var(--colorMain);
 }
 
 .container {
@@ -380,3 +380,8 @@ form.sign-up-form{
     height: 10vh;
     margin-right: 5px;
   }
+
+
+
+
+  
