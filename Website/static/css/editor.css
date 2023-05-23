@@ -41,11 +41,11 @@ form{
   border-radius: 20px;
   height: 30px;
   width:10%;
-  right:0;
+  right:0%;
 }
 
 #launch-button:hover{
-  background-color: rgb(10, 128, 10);
+  background-color: rgb(4, 66, 4);
   color: #f1f1f1;
   cursor: pointer;
 }

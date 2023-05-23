@@ -122,42 +122,35 @@ default_cols = "60"
 def enter_room_python(room_id): 
     
     if(request.method=='POST'):
+        code = request.form['code'] #preserves indentation
+        index=code.find("Output")
+        code=code[:index]
         
         if 'launch-button' in request.form:
-            
-            code = request.form['code'] #preserves indentation
-            index=code.find("Output")
-            code=code[:index]
-            
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
             if resrun== '':
-                print("branchstatement")
                 resrun = 'No result!'
             code = code + 'Output: ' + '\n' + resrun  + '\n' + 'Compilation: ' + '\n' + rescompil
 
             
-        elif 'saveButton' in request.form:
+        elif 'save-button' in request.form:
+            print("executed")
             room=Room.query.filter_by(id=room_id).first()
-            code=request.form['code']
-            index=code.find("Output")
-            code=code[:index]
             room.data=code
             db.session.commit()
-            redirect(url_for('views.view_invitations'))
+            return redirect(url_for('views.view_invitations'))
         
     else:
-        print("else statement")
         room=Room.query.filter_by(id=room_id).first()
         code = room.data
-        print("code in else")
-        print(code)
         run = runcode.RunPyCode(code)
         rescompil, resrun = run.run_py_code()
 
-    # room=Room.query.filter_by(id=room_id).first()
-    # introduction=room.introduction
-    # question=room.question
+    room=Room.query.filter_by(id=room_id).first()
+    room_name=room.room_concept
+    introduction=room.introduction
+    question=room.question
     
     
     return render_template('code_editor.html',
@@ -169,26 +162,43 @@ def enter_room_python(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
-                        #    introduction=introduction,
-                        #    question=question,
-                            h_reference=f'/session/{room_id}/python')
+                           introduction=introduction,
+                           question=question,
+                           room_name=room_name,
+                           h_reference=f'/session/{room_id}/python')
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])
 @login_required
 def enter_room_C(room_id): 
     if(request.method=='POST'):
-        code = request.form['code']
+        code = request.form['code'] #preserves indentation
+        index=code.find("Output")
+        code=code[:index]
+        
+        if 'launch-button' in request.form:
+            run = runcode.RunCCode(code)
+            rescompil, resrun = run.run_c_code()
+            if not resrun:
+                resrun = 'No result!'
+            code = code + 'Output: ' + '\n' + resrun  + '\n' + 'Compilation: ' + '\n' + rescompil
+            
+        elif 'save-button' in request.form:
+            print("executed")
+            room=Room.query.filter_by(id=room_id).first()
+            room.data=code
+            db.session.commit()
+            return redirect(url_for('views.view_invitations'))
+    else:
+        room=Room.query.filter_by(id=room_id).first()
+        code = room.data
         run = runcode.RunCCode(code)
         rescompil, resrun = run.run_c_code()
-        print("Printing resrun")
-        print(resrun)
-        if not resrun:
-            resrun = 'No result!'
-    else:
-        code = default_c_code
-        resrun = 'No result!'
-        rescompil = ''
-        
+    
+    room=Room.query.filter_by(id=room_id).first()
+    room_name=room.room_concept
+    introduction=room.introduction
+    question=room.question
+    
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
@@ -198,22 +208,44 @@ def enter_room_C(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
-                            h_reference=f'/session/{room_id}/C')
+                           introduction=introduction,
+                           question=question,
+                           room_name=room_name,
+                           h_reference=f'/session/{room_id}/C')
 
 @views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
 @login_required
 def enter_room_Cpp(room_id): 
     if(request.method=='POST'):
-        code = request.form['code']
+        code = request.form['code'] #preserves indentation
+        index=code.find("Output")
+        code=code[:index]
+        
+        if 'launch-button' in request.form:
+            run = runcode.RunCppCode(code)
+            rescompil, resrun = run.run_cpp_code()
+            if not resrun:
+                resrun = 'No result!'
+            code = code + 'Output: ' + '\n' + resrun  + '\n' + 'Compilation: ' + '\n' + rescompil
+        
+        elif 'save-button' in request.form:
+            print("executed")
+            room=Room.query.filter_by(id=room_id).first()
+            room.data=code
+            db.session.commit()
+            return redirect(url_for('views.view_invitations'))
+    
+    else:
+        room=Room.query.filter_by(id=room_id).first()
+        code = room.data
         run = runcode.RunCppCode(code)
         rescompil, resrun = run.run_cpp_code()
-        if not resrun:
-            resrun = 'No result!'
-    else:
-        code = default_cpp_code
-        resrun = 'No result!'
-        rescompil = ''
-        
+
+    room=Room.query.filter_by(id=room_id).first()
+    room_name=room.room_concept
+    introduction=room.introduction
+    question=room.question
+    
     return render_template('code_editor.html',
                            user=current_user,
                            code=code,
@@ -223,6 +255,9 @@ def enter_room_Cpp(room_id):
                            rows=default_rows,
                            cols=default_cols,
                            room_id=room_id,
+                           room_name=room_name,
+                           introduction=introduction,
+                           question=question,
                            h_reference=f'/session/{room_id}/Cpp'
                            )
     
