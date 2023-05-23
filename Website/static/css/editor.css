@@ -15,21 +15,37 @@ li {
 
 #content {
   position: absolute;
-  top: 50px;
+  top: 15%;
+  left: 0%;
   min-height: 600px;
   min-width: 900px;
-  width: 100%;
+  width: 80%;
   height: 90%;
 }
 
 #code {
   position: relative;
-  width: 50%;
+  width: 60%;
   min-height: 70%;
-  margin-top: 5%;
   margin-left: 20px;
   /* background-color: blueviolet; */
 }
+
+#intro{
+  position: absolute;
+  top: 15%;
+  right: 0%;
+  display: block;
+  /* min-height: 600px;
+  min-width: 900px; */
+  width: 50%;
+  padding: 10px;
+  
+}
+
+
+
+
 
 form{
   width: 100%;
@@ -37,16 +53,31 @@ form{
 
 #launch-button { 
   border: 1px solid rgba(4, 66, 4, 0);
-  color: rgb(10, 128, 10);
+  color: rgb(4, 66, 4);
   border-radius: 20px;
   height: 30px;
   width:10%;
   right:0%;
 }
 
+#save-button { 
+  border: 1px solid rgb(4, 66, 4);
+  color: rgb(4, 66, 4);
+  border-radius: 20px;
+  height: 30px;
+  width:10%;
+  right:12%;
+}
+
+
 #launch-button:hover{
   background-color: rgb(4, 66, 4);
   color: #f1f1f1;
+  cursor: pointer;
+}
+
+#save-button:hover { 
+  border: 2px solid rgb(4, 66, 4);
   cursor: pointer;
 }
 
@@ -318,18 +349,4 @@ header{
 
 .message * {
   margin: 0px;
-}
-
-#save-button { 
-  border: 1px solid rgba(4, 66, 4, 0);
-  color: rgb(10, 128, 10);
-  border-radius: 20px;
-  height: 30px;
-  width:10%;
-  right:12%;
-}
-
-#save-button:hover { 
-  border: 2px solid rgb(10, 128, 10);
-  cursor: pointer;
 }

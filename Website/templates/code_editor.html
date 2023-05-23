@@ -40,11 +40,20 @@
                         </textarea><br/>
                     <div id="text-code-ace" class="hidden">{{ code }}</div>
 
-        </form>
-    </div>
+                </form>
+            </div>
     
 
-</div>
+        </div>
+        
+
+
+        <div id="intro">
+            
+            <h3>{{ room_name }}</h3>
+            <pre style="white-space: pre-line;">{{ introduction }}</pre>
+            <pre style="white-space: pre-line;">{{ question }}</pre>
+        </div>
 <script src="{{ url_for('static', filename='ace/ace.js') }}"></script>
 <script>
     // The Ace editor needs divs instead of textareas

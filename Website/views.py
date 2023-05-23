@@ -152,6 +152,7 @@ def enter_room_python(room_id):
     introduction=room.introduction
     question=room.question
     
+    print(introduction)
     
     return render_template('code_editor.html',
                            user=current_user,
@@ -245,6 +246,7 @@ def enter_room_Cpp(room_id):
     room_name=room.room_concept
     introduction=room.introduction
     question=room.question
+
     
     return render_template('code_editor.html',
                            user=current_user,
