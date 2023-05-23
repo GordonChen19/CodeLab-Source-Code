@@ -72,15 +72,15 @@ python -m venv myenv
 ```
 
 4. Activate the virtual environment: 
-- On macOS and Linux:
-```
-source myenv/bin/activate
-```
+    - On macOS and Linux:
+    ```
+    source myenv/bin/activate
+    ```
 
-- On Windows (Command Prompt):
-```
-myenv\Scripts\activate.bat
-```
+    - On Windows (Command Prompt):
+    ```
+    myenv\Scripts\activate.bat
+    ```
 
 5. Install the dependencies: 
 ```
@@ -89,6 +89,7 @@ pip install -r requirements.txt
 <br>
 
 **Usage**
+<br>
 To run CODELAB, execute the following command: 
 ```
 python main.py
