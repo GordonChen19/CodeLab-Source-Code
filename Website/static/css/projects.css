@@ -176,3 +176,9 @@ table {
   /* Add your desired styles here */
   background-color: #f5f5f5;
 }
+
+select {
+  -webkit-appearance: none;  /* for webkit (safari, chrome) compatibility */
+  -moz-appearance: none; /* for firefox compatibility */
+  appearance: none;
+}
