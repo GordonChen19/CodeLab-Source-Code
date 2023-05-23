@@ -24,26 +24,4 @@ if __name__ == '__main__':
     
 
 
-'''
-web Socket
-'''
 
-from Website.models import Room
-from Website import db
-from Website import chatgpt
-
-
-@socketio.on('send_message')
-def handle_message(message):
-    if message['type'] == 'hint':
-        user_message="give a hint to solve the "+message['problem']+" Begin with hint"
-    elif message['type']=='solution':
-        user_message="give the solution to the "+message['problem']+" Begin with solution"
-    else:
-        user_message = message['content']
-
-    generated_response=chatgpt(user_message)
-    
-    # Emit the response back to the client
-    response = {'role': 'assistant', 'content': generated_response}
-    emit('receive_message', response)

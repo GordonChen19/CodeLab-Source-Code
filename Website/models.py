@@ -17,5 +17,9 @@ class Room(db.Model):
     room_concept=db.Column(db.String(50),nullable=False)
     introduction=db.Column(db.String(5000))
     question=db.Column(db.String(5000))
+    hint=db.Column(db.String(5000),default='')
+    solution=db.Column(db.String(5000),default='')
+    code_review=db.Column(db.String(5000),default='')
+    last_pressed=db.Column(db.String(15),default='hint')
     
     

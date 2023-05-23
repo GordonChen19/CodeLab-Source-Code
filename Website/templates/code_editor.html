@@ -33,7 +33,9 @@
                     </div>
                     <input id="save-button" class="head-section" type="submit" value="Save/Exit" name='save-button'/>
                     <input id="launch-button" class="head-section" type="submit" value="Launch" name='launch-button'   />
-
+                    <input id="hint-button" class="head-section" type="submit" value="Hint" name="Hint" />
+                    <input id="sol-button"class="head-section"  type="submit" value="Solution" name="Solution" />
+                    <input id="cr-button" class="head-section" type="submit" value="Review Code" name="Review Code"/>
 
                     <textarea id="text-code" name="code" rows={{ rows }} cols={{ cols }}>
                         {{ code }}
@@ -41,6 +43,15 @@
                     <div id="text-code-ace" class="hidden">{{ code }}</div>
 
                 </form>
+            </div>
+            
+            
+            
+            <div class="chat-container"style= "width:60%; min-height: 150px; background-color: rgb ;">
+                <h1 class="heading">Code GPT</h1>
+                <div class="chat-wrapper" >
+                  <div id="chat-messages" class="chat-box" style=" min-height: 100px;"></div>
+                </div>
             </div>
     
 

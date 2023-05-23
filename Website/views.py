@@ -141,6 +141,35 @@ def enter_room_python(room_id):
             db.session.commit()
             return redirect(url_for('views.view_invitations'))
         
+        elif 'Hint' in request.form:
+            print("hint detected")
+            room=Room.query.filter_by(id=room_id).first()
+            room.hint=chatgpt("give a hint for solving the "+room.question+" .Begin with 'hint:'")
+            room.last_pressed='hint'
+            print("printing hint")
+            print(room.hint)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_python',room_id=room_id))
+        elif 'Solution' in request.form:
+            print("solution detected")
+            print("hello")
+            room=Room.query.filter_by(id=room_id).first()
+            room.solution=chatgpt("give the solution code written in" + room.room_language + "to the" + room.question + " Begin with code:")
+            room.last_pressed='solution'
+            print("printing solution")
+            print(room.solution)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_python',room_id=room_id))
+        elif 'Review Code' in request.form:
+            print("review code detected")
+            room=Room.query.filter_by(id=room_id).first()
+            room.code_review=chatgpt("Given the question" + room.question + "Give suggestions to how to improve the follow code to answer the question." + code)
+            room.last_pressed='code_review'
+            print("code_review")
+            print(room.code_review)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_python',room_id=room_id))
+        
     else:
         room=Room.query.filter_by(id=room_id).first()
         code = room.data
@@ -152,7 +181,8 @@ def enter_room_python(room_id):
     introduction=room.introduction
     question=room.question
     
-    print(introduction)
+    prompt=getattr(room,room.last_pressed)
+    
     
     return render_template('code_editor.html',
                            user=current_user,
@@ -166,6 +196,7 @@ def enter_room_python(room_id):
                            introduction=introduction,
                            question=question,
                            room_name=room_name,
+                           prompt=prompt,
                            h_reference=f'/session/{room_id}/python')
 
 @views.route("/session/<room_id>/C",methods=['POST','GET'])
@@ -189,6 +220,35 @@ def enter_room_C(room_id):
             room.data=code
             db.session.commit()
             return redirect(url_for('views.view_invitations'))
+        
+        elif 'Hint' in request.form:
+            print("hint detected")
+            room=Room.query.filter_by(id=room_id).first()
+            room.hint=chatgpt("give a hint for solving the "+room.question+" .Begin with 'hint:'")
+            room.last_pressed='hint'
+            print("printing hint")
+            print(room.hint)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_C',room_id=room_id))
+        elif 'Solution' in request.form:
+            print("solution detected")
+            print("hello")
+            room=Room.query.filter_by(id=room_id).first()
+            room.solution=chatgpt("give the solution code written in" + room.room_language + "to the" + room.question + " Begin with code:")
+            room.last_pressed='solution'
+            print("printing solution")
+            print(room.solution)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_C',room_id=room_id))
+        elif 'Review Code' in request.form:
+            print("review code detected")
+            room=Room.query.filter_by(id=room_id).first()
+            room.code_review=chatgpt("Given the question" + room.question + "Give suggestions to how to improve the follow code to answer the question." + code)
+            room.last_pressed='code_review'
+            print("code_review")
+            print(room.code_review)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_C',room_id=room_id))
     else:
         room=Room.query.filter_by(id=room_id).first()
         code = room.data
@@ -199,6 +259,8 @@ def enter_room_C(room_id):
     room_name=room.room_concept
     introduction=room.introduction
     question=room.question
+    
+    prompt=getattr(room,room.last_pressed)
     
     return render_template('code_editor.html',
                            user=current_user,
@@ -212,6 +274,7 @@ def enter_room_C(room_id):
                            introduction=introduction,
                            question=question,
                            room_name=room_name,
+                           prompt=prompt,
                            h_reference=f'/session/{room_id}/C')
 
 @views.route("/session/<room_id>/Cpp",methods=['POST','GET'])
@@ -235,6 +298,35 @@ def enter_room_Cpp(room_id):
             room.data=code
             db.session.commit()
             return redirect(url_for('views.view_invitations'))
+        
+        elif 'Hint' in request.form:
+            print("hint detected")
+            room=Room.query.filter_by(id=room_id).first()
+            room.hint=chatgpt("give a hint for solving the "+room.question+" .Begin with 'hint:'")
+            room.last_pressed='hint'
+            print("printing hint")
+            print(room.hint)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_Cpp',room_id=room_id))
+        elif 'Solution' in request.form:
+            print("solution detected")
+            print("hello")
+            room=Room.query.filter_by(id=room_id).first()
+            room.solution=chatgpt("give the solution code written in" + room.room_language + "to the" + room.question + " Begin with code:")
+            room.last_pressed='solution'
+            print("printing solution")
+            print(room.solution)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_Cpp',room_id=room_id))
+        elif 'Review Code' in request.form:
+            print("review code detected")
+            room=Room.query.filter_by(id=room_id).first()
+            room.code_review=chatgpt("Given the question" + room.question + "Give suggestions to how to improve the follow code to answer the question." + code)
+            room.last_pressed='code_review'
+            print("code_review")
+            print(room.code_review)
+            db.session.commit()
+            return redirect(url_for('views.enter_room_Cpp',room_id=room_id))
     
     else:
         room=Room.query.filter_by(id=room_id).first()
@@ -246,7 +338,8 @@ def enter_room_Cpp(room_id):
     room_name=room.room_concept
     introduction=room.introduction
     question=room.question
-
+    
+    prompt=getattr(room,room.last_pressed)
     
     return render_template('code_editor.html',
                            user=current_user,
@@ -260,6 +353,7 @@ def enter_room_Cpp(room_id):
                            room_name=room_name,
                            introduction=introduction,
                            question=question,
+                           prompt=prompt,
                            h_reference=f'/session/{room_id}/Cpp'
                            )
     
