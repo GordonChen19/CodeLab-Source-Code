@@ -21,7 +21,7 @@ def chatgpt(query):
             {"role": "user", "content": query}
         )
         chat = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo", messages=messages, max_tokens=45
+            model="gpt-3.5-turbo", messages=messages, max_tokens=500
         )
     reply = chat.choices[0].message.content
     return reply
