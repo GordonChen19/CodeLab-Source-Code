@@ -3,12 +3,16 @@ chatgpt query
 '''
 
 import openai
+import os
+from dotenv import load_dotenv
+load_dotenv()
+CHATGPT_SECRET_KEY = os.getenv("CHATGPT_SECRET_KEY")
 
 def chatgpt(query):
 
-    openai.api_key = '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'
+    openai.api_key = CHATGPT_SECRET_KEY
     messages = [ {"role": "system", "content": 
-                "You are a intelligent assistant."} ]
+                "You are an intelligent assistant."} ]
 
     messages.append({"role": "system", "content": "You are a code assistant."})
     # messages.append({"role": "system", "content": "Give suggestions without directly writing any code"})
