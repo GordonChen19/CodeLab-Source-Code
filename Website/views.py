@@ -83,8 +83,6 @@ int main(int argc, char **argv)
     printf("Hello C World!!\\n");
     return 0;
 }
-
-    
 """
 
 default_cpp_code = """
@@ -97,8 +95,6 @@ int main(int argc, char **argv)
     cout << "Hello C++ World" << endl;
     return 0;
 }
-
-
 """
 
 default_python_code = """
@@ -107,8 +103,7 @@ import os
 
 if __name__ == "__main__":
     print ("Hello Python World!!")
-    
-    
+
 """
 
 default_rows = "15"
@@ -125,51 +120,52 @@ def enter_room_python(room_id):
         code = request.form['code'] #preserves indentation
         index=code.find("Output")
         code=code[:index]
-        print(code)
+        
+        
         
         if 'launch-button' in request.form:
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
+            print(code)
             if resrun== '':
                 resrun = 'No result!'
             code = code + 'Output: ' + '\n' + resrun  + '\n' + 'Compilation: ' + '\n' + rescompil
 
             
         elif 'save-button' in request.form:
-            print("executed")
+
+            
             room=Room.query.filter_by(id=room_id).first()
             room.data=code
+           
             db.session.commit()
             return redirect(url_for('views.view_invitations'))
         
         elif 'Hint' in request.form:
-            print("hint detected")
+
             room=Room.query.filter_by(id=room_id).first()
             room.hint=chatgpt("give a hint for solving the "+room.question+" .Begin with 'hint:'")
             room.last_pressed='hint'
-            print("printing hint")
-            print(room.hint)
+
             room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_python',room_id=room_id))
         elif 'Solution' in request.form:
-            print("solution detected")
-            print("hello")
+           
             room=Room.query.filter_by(id=room_id).first()
             room.solution=chatgpt("give the solution code written in" + room.room_language + "to the" + room.question + " Begin with code:")
             room.last_pressed='solution'
             room.data=code
-            print("printing solution")
+    
             print(room.solution)
             db.session.commit()
             return redirect(url_for('views.enter_room_python',room_id=room_id))
         elif 'Review Code' in request.form:
-            print("review code detected")
+           
             room=Room.query.filter_by(id=room_id).first()
             room.code_review=chatgpt("Given the question" + room.question + "Give suggestions to how to improve the follow code to answer the question." + code)
             room.last_pressed='code_review'
-            print("code_review")
-            print(room.code_review)
+            
             room.data=code
             db.session.commit()
             return redirect(url_for('views.enter_room_python',room_id=room_id))
