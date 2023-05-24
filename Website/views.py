@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash
 from flask_login import login_required, current_user
-from .models import *
 import json
 import sqlite3 as sql
 from . import runcode
