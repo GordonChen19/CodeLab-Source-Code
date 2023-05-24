@@ -31,7 +31,6 @@
                     <div id="title-code" class="head-section">
                     Code Editor
                     </div>
-                    <input id="save-button" class="head-section" type="submit" value="Save/Exit" name='save-button'/>
                     <input id="launch-button" class="head-section" type="submit" value="Launch" name='launch-button'   />
                     <input id="hint-button" class="head-section" type="submit" value="Hint" name="Hint" />
                     <input id="sol-button"class="head-section"  type="submit" value="Solution" name="Solution" />
@@ -86,9 +85,6 @@
             // Make sure we copy the content of the editor to the textarea before posting
             // its content to the server
             document.getElementById("launch-button").addEventListener("click", function () {
-                editorElement.innerHTML = editor.getValue();
-            });
-            document.getElementById("save-button").addEventListener("click", function () {
                 editorElement.innerHTML = editor.getValue();
             });
             document.getElementById("Hint").addEventListener("click", function () {

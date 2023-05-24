@@ -20,22 +20,9 @@
         <img src="{{url_for("static", filename="CodeLabLogo.png")}}" >
       </a>
       <div class="navbar-nav">
-        {% if user.is_authenticated %}
-        <div class="dropdown">
-          <button class="dropbtn">
-            Welcome {{user.first_name}}!
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="/projects">PROJECTS</a>
-            <a href="/logout">LOGOUT</a>
-          </div>
-        </div>
 
-        {% else %}
-        <a class="nav-item" id="login" href="/login">LOGIN</a>
+        <a class="nav-item" id="login" href="/projects">Projects</a>
         
-        {% endif %}
       </div>
     </nav>
 

@@ -45,35 +45,7 @@
       </div>
     </div>
     <br>
-    <div class="allcourses-wrapper-1">
-      <button type="button" class="collapsible">Existing Projects</button>
-      <div class="content">
-        <table class="table table-striped-columns">
-          <tr class="room-title">
-            <th>Room Name</th>
-            <th>Room Language</th>
-            <th>Concept</th>
-            <th>Delete?</th>
-          </tr>
-          {% for room in room %}
-          <tr class="room-child">
-            <td>
-              <a href="/session/{{room.id}}/{{room.room_language}}" target="_blank">
-                {{room.room_name}}
-              </a>
-            </td>
-            <td>{{room.room_language}}</td>
-            <td>{{room.room_concept}}</td>
-            <td>
-              <button type="button" class="close" onClick="deleteRoom(`{{ room.id }}`)"> 
-                <span aria-hidden="true">Yes</span>
-              </button>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
-      </div>
-    </div>
+   
     
   </body>
   

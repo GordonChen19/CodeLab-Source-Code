@@ -1,17 +1,11 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                        
 import sys
 import os
 
 if __name__ == "__main__":
-    print ("Hi!!")
+    print ("Hello Python World!!")
 
 
                        
-                     
-                       
-                     
                        
                        
-                       
-                  
-                     
