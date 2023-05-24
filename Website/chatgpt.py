@@ -3,11 +3,6 @@ chatgpt query
 '''
 
 import openai
-import os
-
-
-
-
 
 def chatgpt(query):
 

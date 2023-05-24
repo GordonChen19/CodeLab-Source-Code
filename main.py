@@ -1,7 +1,5 @@
 from Website import create_app
-from flask_socketio import SocketIO,emit
-import argparse
-
+from flask_socketio import SocketIO
 app=create_app()
 
 # parser=argparse.ArgumentParser()
