@@ -24,7 +24,6 @@ def home():
 @views.route("/projects",methods=['GET','POST'])
 def view_invitations():
     if request.method=='POST': #newroom
-        print("Hello")
         room_name=request.form.get('room_name')
         concept_name=request.form.get('concept_name')
         if len(room_name)==0:
@@ -32,8 +31,6 @@ def view_invitations():
         if len(concept_name)==0:
             flash('Please input a valid concept ',category='error')
         room_language=request.form.get('room_language')
-    
-        
         language_code={'python':default_python_code,'C':default_c_code,'Cpp':default_cpp_code}
 
         introduction=chatgpt("Explain"+str(concept_name)+"with the aid of code written in"+str(room_language)+". Begin with explanation")
@@ -41,7 +38,7 @@ def view_invitations():
         return redirect(url_for('views.enter_room_python',
                                 room_concept=concept_name,
                                 room_language=room_language,
-                                data=language_code[room_language],
+                                code=language_code[room_language],
                                 introduction=introduction,
                                 question=question,
                                 prompt='IM HERE TO HELP'))
@@ -95,63 +92,57 @@ default_cols = "60"
 def enter_room_python(): 
     room_concept = request.args.get('room_concept')
     room_language = request.args.get('room_language')
-    data = request.args.get('data')
+    code = request.args.get('code')
     introduction = request.args.get('introduction')
     question= request.args.get('question')
     prompt= request.args.get('prompt')
+    resrun=''
+    rescompil=''
     
     if(request.method=='POST'):
         code = request.form['code'] #preserves indentation
         index=code.find("Output")
         code=code[:index]
+        print(code)
         
         
         if 'launch-button' in request.form:
             run = runcode.RunPyCode(code)
             rescompil, resrun = run.run_py_code()
-            print(code)
+
             if resrun== '':
                 resrun = 'No result!'
             code = code + 'Output: ' + '\n' + resrun  + '\n' + 'Compilation: ' + '\n' + rescompil
 
         
         elif 'Hint' in request.form:
-
             prompt=chatgpt("give a hint for solving the "+question+" .Begin with 'hint:'")
-
             return redirect(url_for('views.enter_room_python',room_concept=room_concept,room_language=room_language,
-                                    data=code,introduction=introduction,
+                                    code=code,introduction=introduction,
                                     question=question,
                                     prompt=prompt))
         elif 'Solution' in request.form:
            
             
-            prompt=chatgpt("give the solution code written in" + room_language + "to the" + question + " Begin with code:")
+            prompt=chatgpt("give the solution code written in" + room_language + "to the" + question + " Begin with Solution:")
             return redirect(url_for('views.enter_room_python',room_concept=room_concept,room_language=room_language,
-                                    data=code,introduction=introduction,
+                                    code=code,introduction=introduction,
                                     question=question,
                                     prompt=prompt))
         elif 'Review Code' in request.form:
            
            
-            prompt=chatgpt("Given the question" + question + "Give suggestions to how to improve the follow code to answer the question." + code)
+            prompt=chatgpt(  "Does" + code + "answer the question:" + question)
             return redirect(url_for('views.enter_room_python',room_concept=room_concept,room_language=room_language,
-                                    data=code,introduction=introduction,
+                                    code=code,introduction=introduction,
                                     question=question,
                                     prompt=prompt))
         
-    else:
-        
-        code = data
-        
-        run = runcode.RunPyCode(code)
-        rescompil, resrun = run.run_py_code()
-    
     
     return render_template('code_editor.html',
                            code=code,
                            target=url_for('views.enter_room_python',room_concept=room_concept,room_language=room_language,
-                                    data=code,introduction=introduction,
+                                    code=code,introduction=introduction,
                                     question=question,
                                     prompt=prompt),
                            resrun=resrun,
@@ -161,7 +152,6 @@ def enter_room_python():
                            room_name=room_concept,
                            introduction=introduction,
                            question=question,
-                        
                            prompt=prompt)
 
 @views.route("/session/C",methods=['POST','GET'])
