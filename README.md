@@ -139,8 +139,8 @@ At the bottom left, our friendly Robo will assist you with the problem!
 ## Future Prospects 
 Moving forward, we hope to expand **CODE LAB** further to incorporate new and improved features: 
 - Incorporating more computing languages for learning
-- Creating a collaborative space where students can learn together and share their knowledge with one another. This can also be a collaborative platform whereby educators may utilise as a flipped classroom to teach students. 
-- Visualisation tools whereby users can create flowcharts to form codes and vice versa 
+- Creating a collaborative space where students can learn together and share their knowledge with one another. Codelab can provide a  collaborative platform like 'google docs' whereby people can work on the same peice of code without worrying about code conflicts.  
+- Visualisation tools whereby users can create control flow graphs to better understand the execution of their codes code
 - Not only for computing, we hope to venture further into other subjects like English and Mathematics, together with the help of Generative AI to create a personalised learning environment to guide students with diverse needs. 
 
 <br>
