@@ -36,7 +36,8 @@ SEEK is inspired by the theme of **Digital Empowerment**, to address the project
 <em>"Develop innovative and creative solutions that leverages on emerging technologies such as GenAI to increase access to information and opportunities and empower individuals and communities to thrive in this digital world. The solution could create opportunities and address challenges from digital divide, reduce bias, and promote equity using digital solutions.” </em>
 
 <br>
-## Overview
+Overview
+<br>
 With rapid advancements in the AI field, we believe we are at the cusp of pushing for positive transformation of education. 
 
 One of the key objectives that we as a team want to push for is the **digital empowerment of education through means of personalized learning**.
