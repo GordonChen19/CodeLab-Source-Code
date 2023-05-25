@@ -100,17 +100,17 @@ The application will start running on "http://localhost:5000".
 
 ## Features 
 **Projects Directory** <br>
-First, create a 'Room Name' and type in 'What concept you would like to learn'. You may select the following computing languages to learn: Python, C, C++. 
+First, create a 'Room Name' and type in 'What concept you would like to learn', for instance 'union find'. You can choose one of the following computing languages to code with: Python, C, C++. 
 
 ![Projects Directory](Website/static/CodeLabProjects.png)
 
 <br>
 
 **Code Editor** <br>
-After creation of the room, you will be redirected to this page below. For instance, you are interested to learn the concept of <em>Union Find</em>. On the right, a description of <em>Union Find</em> will be given and a random question will be generated for students to answer on the IDE on the top left of the screen. 
+Upon creating a room, you will be redirected to this page below. For instance, if you specified to learn about union find you would be directed to the respective page  <em>Union Find</em>. On the right, a description of <em>Union Find</em> will be given and a related question will be generated for students to answer on the IDE on the top left of the screen. 
 <br>
 
-At the bottom left, our friendly Robo will help you out!
+At the bottom left, our friendly Robo will assist you with the problem!
 - Click on 'hints' to get help on the question you are working on
 - Click on 'solution' to check your answer
 - Click on 'code review' to determine how to improve your answer
