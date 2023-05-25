@@ -124,7 +124,7 @@ First, create a 'Room Name' and type in 'What concept you would like to learn', 
 <br>
 
 **Code Editor** <br>
-Upon creating a room, you will be redirected to this page below. For instance, if you specified to learn about union find you would be directed to the respective page  <em>Union Find</em>. On the right, a detailed description of <em>Union Find</em> will be given and a related question will be generated for students to answer to consolidate their understanding. 
+Upon creating a room, you will be redirected to this page below. For instance, if you previously specified to learn about union find you would be directed to the respective page titled <em>Union Find</em>. On the right hand side, a detailed description of <em>Union Find</em> will be given and a related question will be generated for students to answer to consolidate their understanding through hands-on coding practice. 
 <br>
 
 At the bottom left, our friendly Robo will assist you with the problem!
