@@ -3,7 +3,7 @@
 ## Introduction
 ![CODE LAB](Website/static/CodeLabLogo.png)
 
-Hi, we are SEEK, currently second-year students from Nanyang Technological University studying Mathematical Sciences and Computer Sciences. In this era of continuous digital pursuit, it is no wonder of the demand for knowledge of computing languages and the beauty of works computing can bring to us. In line with the chosen theme, our venture, **CODE LAB** is an educational AI tool designed by students for students, seeking to provide personalized education for whatever students wish to learn. 
+Hi, we are SEEK, currently second-year students from Nanyang Technological University studying Mathematical Sciences and Computer Sciences. In this era of continuous digital pursuit, it is no surprise that there has been an increasing demand for computing languages . In line with the chosen theme, our venture, **CODE LAB** is an educational AI tool designed by students for students, seeking to provide personalized education for whatever students wish to learn. 
 
 <br>
 
