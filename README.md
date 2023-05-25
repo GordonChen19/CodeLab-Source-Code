@@ -36,15 +36,31 @@ SEEK is inspired by the theme of **Digital Empowerment**, in which the project s
 <em>"Develop innovative and creative solutions that leverages on emerging technologies such as GenAI to increase access to information and opportunities and empower individuals and communities to thrive in this digital world. The solution could create opportunities and address challenges from digital divide, reduce bias, and promote equity using digital solutions.” </em>
 
 <br>
-
 ## Overview
-In our first two years of University, computing is a new venture for most of us. The idea of <em>Personalised Learning</em> resonates with us as we recognised how many individuals have different learning aptitudes, abilities and prior knowledge. The current climate also presents an issue where some communities do not have access to high quality education, due to social or economic reasons. Leveraging on AI-powered online education allows the possibility for all people regardless of their social or economic background to receive high quality education. This hopes to reduce bias and promote equity in allowing everyone to learn and grow their skillsets together.
-<br>
-|Pain Points   			        | Our Ideals	                        | 
-|:----------------:	            |:--------:	 	                                |
-|Lack of real-time help and sharing of codes often leads to the problem of bugs and having to incorporate the time lag to debug   | Real-time collaborative workspace where students can type in their codes and GenAI to provide comments and suggestions immediately  | 
-|Time lag to search the required files and opening it on coding software | All in one platform to write and run codes, with clear organisation of project folders and coding files | 	
+With rapid advancements in the AI field, we believe we are at the cusp of pushing for positive transformation of education. 
 
+One of the key objectives that we as a team want to push for is the **digital empowerment of education through means of personalized learning**.
+<br>
+<br>
+
+**Pain Points** 
+<br>	
+Classrooms set a certain pace for all students. However, individuals have different learning aptitudes, abilities and prior knowledge. We don’t want to confine students to a classroom, we want students to learn whatever they wish. 
+
+Unfortunately, the current climate also presents an issue where some communities do not have access to high quality education, due to social or economic reasons. Leveraging on AI-powered online education  allows the possibility for all people regardless of their social or economic background to receive high quality education. This hopes to reduce bias and promote equity in allowing everyone to learn and grow their skillsets together. 
+<br>
+<br>
+
+**Solutions**
+<br>
+With these key issues in mind, as a group of maths and computer science students from NTU, we wanted to address the issue around the education of computer science. 
+
+CodeLab is an educational AI tool designed by students for students, seeking to provide personalized education for whatever students wish to learn. Students can learn about any computer science related concept and codelab will bring up a page to teach them that concept by bringing up vivid explanations examples and questions to consolidate the students understanding.
+<br>
+<br>
+
+**We built Codelab to demonstrate the most powerful use case of AI, which is to use AI to enhance HI human intelligence, human potential and human purpose.**
+<br>
 <br>
 
 ## Get Started
@@ -107,7 +123,7 @@ First, create a 'Room Name' and type in 'What concept you would like to learn', 
 <br>
 
 **Code Editor** <br>
-Upon creating a room, you will be redirected to this page below. For instance, if you specified to learn about union find you would be directed to the respective page  <em>Union Find</em>. On the right, a description of <em>Union Find</em> will be given and a related question will be generated for students to answer on the IDE on the top left of the screen. 
+Upon creating a room, you will be redirected to this page below. For instance, if you specified to learn about union find you would be directed to the respective page  <em>Union Find</em>. On the right, a detailed description of <em>Union Find</em> will be given and a related question will be generated for students to answer to consolidate their understanding. 
 <br>
 
 At the bottom left, our friendly Robo will assist you with the problem!
