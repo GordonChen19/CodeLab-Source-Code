@@ -31,7 +31,7 @@ Hi, we are SEEK, currently second-year students from Nanyang Technological Unive
 <br>
 
 ## Theme of Submission 🗊 
-SEEK is inspired by the theme of **Digital Empowerment**, in which the project statement chosen is by **IMDA --- Creating Opportunities with Emerging Technologies**: 
+SEEK is inspired by the theme of **Digital Empowerment**, to address the project statement by **IMDA --- Creating Opportunities with Emerging Technologies**: 
 <br>
 <em>"Develop innovative and creative solutions that leverages on emerging technologies such as GenAI to increase access to information and opportunities and empower individuals and communities to thrive in this digital world. The solution could create opportunities and address challenges from digital divide, reduce bias, and promote equity using digital solutions.” </em>
 
