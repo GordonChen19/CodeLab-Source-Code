@@ -56,7 +56,7 @@ Unfortunately, the current climate also presents an issue where some communities
 <br>
 With these key issues in mind, as a group of maths and computer science students from NTU, we wanted to address the issue around the education of computer science. 
 
-CodeLab is an educational AI tool designed by students for students, seeking to provide personalized education for whatever students wish to learn. Students can learn about any computer science related concept and codelab will bring up a page to teach them that concept by bringing up vivid explanations examples and questions to consolidate the students understanding.
+CodeLab is an educational AI tool designed by students for students, seeking to provide personalized education for whatever students wish to learn. Students can learn about any computer science related concept and codelab will bring up a page to teach them that concept by providing comprehensive explanations, examples and questions to consolidate the students understanding.
 <br>
 <br>
 
