@@ -17,7 +17,7 @@ Hi, we are SEEK, currently second-year students from Nanyang Technological Unive
 <br> Email: chearmine02@gmail.com
 
 3. Gordon Tian Xiao Chen
-<br> Github Handle: [Gord0nChen19](https://github.com/GordonChen19) 
+<br> Github Handle: [GordonChen19](https://github.com/GordonChen19) 
 <br> Email: chengordon8@gmail.com
 
 4. Ng Shi Ying
