@@ -141,8 +141,7 @@ Moving forward, we hope to expand **CODE LAB** further to incorporate new and im
 - Incorporating more computing languages for learning
 - Creating a collaborative space where students can learn together and share their knowledge with one another. Codelab can provide a  collaborative platform like 'google docs' whereby people can work on the same peice of code without worrying about code conflicts.  
 - Visualisation tools whereby users can create control flow graphs to better understand the execution of their codes code
-- Not only for computing, we hope to venture further into other subjects like English and Mathematics, together with the help of Generative AI to create a personalised learning environment to guide students with diverse needs. 
-
+- Creating structured responses using frameworks such as Langchain
 <br>
 
 ## Tech Stack
